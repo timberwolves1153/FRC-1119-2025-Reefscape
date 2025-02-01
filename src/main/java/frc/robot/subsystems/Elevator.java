@@ -1,21 +1,12 @@
 package frc.robot.subsystems;
 
-import java.lang.ModuleLayer.Controller;
-
-import com.ctre.phoenix6.controls.Follower;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.spark.SparkAbsoluteEncoder;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.config.SparkMaxConfig;
-import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
-import com.revrobotics.spark.config.SparkFlexConfig;
 
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,37 +29,21 @@ public class Elevator extends SubsystemBase {
     // private SparkFlex elevatorMotorL;
     // private SparkFlex elevatorMotorR;
 
-    // public static final SparkFlexConfig elevatorConfigL = new SparkFlexConfig();
-    // public static final SparkFlexConfig elevatorConfigR = new SparkFlexConfig();
-
     // private SparkClosedLoopController elevatorController = elevatorMotorL.getClosedLoopController();
     // private RelativeEncoder elevatorEncoder = elevatorMotorL.getEncoder();
 
     // public Elevator() {
-    //     elevatorMotorL = new SparkFlex(0, MotorType.kBrushless); //TODO: set ID
-    //     elevatorMotorR = new SparkFlex(0, MotorType.kBrushless);
+    //     elevatorMotorL = new SparkFlex(51, MotorType.kBrushless); //TODO: set ID
+    //     elevatorMotorR = new SparkFlex(52, MotorType.kBrushless);
 
-    //     elevatorConfigL
-    //         .smartCurrentLimit(40)
-    //         .idleMode(IdleMode.kBrake);
-    //     elevatorConfigL.closedLoop
-    //         .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-    //         .p(0.1)
-    //         .outputRange(-1, 1);
-        
-    //     elevatorConfigL.limitSwitch
-    //         .reverseLimitSwitchEnabled(true);
-
-    //     elevatorConfigR.follow(0, true); //TODO: set
-        
     //     elevatorMotorL.configure(
-    //         elevatorConfigL,
+    //         Configs.Elevator.elevatorConfigL,
     //         ResetMode.kResetSafeParameters,
     //         PersistMode.kPersistParameters
     //     );
 
     //     elevatorMotorR.configure(
-    //         elevatorConfigR,
+    //         Configs.Elevator.elevatorConfigR,
     //         ResetMode.kResetSafeParameters,
     //         PersistMode.kPersistParameters
     //     );
@@ -103,13 +78,13 @@ public class Elevator extends SubsystemBase {
     //                     elevatorCurrentTarget = ElevatorSetpoints.kFeederStation;
     //                     break;
     //                 case L1:
-    //                     elevatorCurrentTarget = ElevatorSetpoints.kL1;
+    //                     elevatorCurrentTarget = ElevatorSetpoints.L1;
     //                     break;
     //                 case L2:
-    //                     elevatorCurrentTarget = ElevatorSetpoints.kL2;
+    //                     elevatorCurrentTarget = ElevatorSetpoints.L2;
     //                     break;
     //                 case L3:
-    //                     elevatorCurrentTarget = ElevatorSetpoints.kL3;
+    //                     elevatorCurrentTarget = ElevatorSetpoints.L3;
     //                     break;
     //             }
     //         }

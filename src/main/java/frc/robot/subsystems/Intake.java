@@ -4,24 +4,21 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.config.SparkMaxConfig;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Configs;
 
 public class Intake extends SubsystemBase {
     // private SparkMax intakeMotor;
 
-    // private SparkMaxConfig intakeConfig;
-
     // public Intake() {
-    //     intakeMotor = new SparkMax(0, MotorType.kBrushless);
+    //     intakeMotor = new SparkMax(56, MotorType.kBrushless);
 
-    //     intakeConfig = new SparkMaxConfig();
-
-    //     intakeConfig.smartCurrentLimit(40).idleMode(IdleMode.kBrake);
-
-    //     intakeMotor.configure(intakeConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    //     intakeMotor.configure(
+    //         Configs.Intake.intakeConfig,
+    //         ResetMode.kResetSafeParameters,
+    //         PersistMode.kPersistParameters
+    //     );
     // }
 
     // public void intakeIn() {

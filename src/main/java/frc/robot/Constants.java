@@ -101,7 +101,7 @@ public final class Constants {
       public static final int driveMotorID = 1;
       public static final int angleMotorID = 2;
       public static final int absoluteEncoderPorts = 0;
-      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(299.8);
+      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(297.9 - 180);
       public static final SwerveModuleConstants constants = 
           new SwerveModuleConstants(driveMotorID, angleMotorID, absoluteEncoderPorts, angleOffset);
     }
@@ -111,7 +111,7 @@ public final class Constants {
         public static final int driveMotorID = 11;
         public static final int angleMotorID = 12;
         public static final int absoluteEncoderPorts = 1;
-        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(231.1);  
+        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(53.5);  
         public static final SwerveModuleConstants constants = 
             new SwerveModuleConstants(driveMotorID, angleMotorID, absoluteEncoderPorts, angleOffset);
     }
@@ -121,7 +121,7 @@ public final class Constants {
         public static final int driveMotorID = 21;
         public static final int angleMotorID = 22;
         public static final int absoluteEncoderPorts = 2;
-        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(75.5);
+        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(72.6 + 180);
         public static final SwerveModuleConstants constants = 
             new SwerveModuleConstants(driveMotorID, angleMotorID, absoluteEncoderPorts, angleOffset);
         }
@@ -131,7 +131,7 @@ public final class Constants {
         public static final int driveMotorID = 31;
         public static final int angleMotorID = 32;
         public static final int absoluteEncoderPorts = 3;
-        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(212.5); 
+        public static final Rotation2d angleOffset = Rotation2d.fromDegrees(209.1 - 180); 
         public static final SwerveModuleConstants constants = 
             new SwerveModuleConstants(driveMotorID, angleMotorID, absoluteEncoderPorts, angleOffset);
         }
@@ -155,8 +155,15 @@ public final class Constants {
 
   public static final class ElevatorSetpoints {
     public static final int kFeederStation = 0;
-    public static final int kL1 = 0;
-    public static final int kL2 = 0;
-    public static final int kL3 = 0;
+    public static final int L1 = 0;
+    public static final int L2 = 0;
+    public static final int L3 = 0;
+  }
+
+  public static final class WristSetpoints {
+    public static final int kFeederStation = 33;
+    public static final int L1 = 0;
+    public static final int L2 = 2;
+    public static final int L3 = 2;
   }
 }

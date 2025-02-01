@@ -46,7 +46,7 @@ public class TeleopSwerve extends Command {
             ).times(Constants.Swerve.maxSpeed),
             rotationVal * Constants.Swerve.maxAngularVelocity,
             fieldCentricSup.getAsBoolean(),
-            false
+            true
         );
     }
 }

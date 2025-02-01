@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.lib.util.AxisButton;
 import frc.robot.subsystems.*;
+// import frc.robot.subsystems.Elevator.Setpoint;
 
 public class RobotContainer {
   private final Joystick driver = new Joystick(0);
@@ -72,6 +74,10 @@ public class RobotContainer {
   /* Subsystems */
 
   private final Swerve s_Swerve = new Swerve();
+  private final Algae algae = new Algae();
+  private final Intake intake = new Intake();
+  private final Elevator elevator = new Elevator();
+  private final Wrist wrist = new Wrist();
 
   public RobotContainer() {
     s_Swerve.setDefaultCommand(
@@ -84,6 +90,20 @@ public class RobotContainer {
     ));
 
     /* Named Commands */
+
+    // NamedCommands.registerCommand("Elevator Feeder", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.kFeederStation), elevator));
+    // NamedCommands.registerCommand("Elevator L1", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L1), elevator));
+    // NamedCommands.registerCommand("Elevator L2", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L2), elevator));
+    // NamedCommands.registerCommand("Elevator L3", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L3), elevator));
+
+    // NamedCommands.registerCommand("Wrist Feeder", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.kFeederStation), wrist));
+    // NamedCommands.registerCommand("Wrist L1", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L1), wrist));
+    // NamedCommands.registerCommand("Wrist L2", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L2), wrist));
+    // NamedCommands.registerCommand("Wrist L3", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L3), wrist));
+
+    // NamedCommands.registerCommand("Intake In", new InstantCommand(() -> intake.intakeIn(), intake));
+    // NamedCommands.registerCommand("Intake Out", new InstantCommand(() -> intake.intakeOut(), intake));
+    // NamedCommands.registerCommand("Intake Stop", new InstantCommand(() -> intake.intakeStop(), intake));
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("AutoChooser", autoChooser);
@@ -102,6 +122,16 @@ public class RobotContainer {
   /* Operator Buttons */
   driveB.onTrue(new InstantCommand(() -> s_Swerve.resetEncoders()));
 
+  driveRightTrigger.onTrue(new InstantCommand(() -> algae.pivotDown(), algae));
+  driveRightTrigger.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
+  driveRightBumper.onTrue(new InstantCommand(() -> algae.pivotUp(), algae));
+  driveRightBumper.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
+  
+  driveLeftTrigger.onTrue(new InstantCommand(() -> algae.algaeIntake(), algae));
+  driveLeftTrigger.onFalse(new InstantCommand(() -> algae.algaeStop(), algae));
+  driveLeftBumper.onTrue(new InstantCommand(() -> algae.algaeOuttake(), algae));
+  driveLeftBumper.onFalse(new InstantCommand(() -> algae.algaeStop(), algae));
+
   }
 
   public Joystick getDriveController() {
@@ -113,8 +143,8 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    // return autoChooser.getSelected();
-    return new PathPlannerAuto("straightAuto2");
+    return autoChooser.getSelected();
+    // return new PathPlannerAuto("straightAuto2");
   }
 
   public void resetEncoders() {

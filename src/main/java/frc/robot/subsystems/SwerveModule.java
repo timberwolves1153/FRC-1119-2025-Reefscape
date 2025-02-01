@@ -8,7 +8,6 @@ import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.config.SparkMaxConfig;
 
 import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.MetersPerSecond;
@@ -26,6 +25,7 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.sysid.SysIdRoutineLog;
 import frc.robot.lib.math.OnBoardModuleState;
 import frc.robot.lib.util.SwerveModuleConstants;
+import frc.robot.Configs;
 import frc.robot.Constants;
 
 public class SwerveModule {
@@ -48,9 +48,6 @@ public class SwerveModule {
     private final MutDistance mutableDistance = Meters.mutable(0);
     private final MutLinearVelocity mutableVelocity = MetersPerSecond.mutable(0);
 
-    SparkMaxConfig angleConfig = new SparkMaxConfig();
-    SparkMaxConfig driveConfig = new SparkMaxConfig();
-
     SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(
         Constants.Swerve.driveKS,
         Constants.Swerve.driveKV,
@@ -69,7 +66,13 @@ public class SwerveModule {
         integratedAngleEncoder = mAngleMotor.getEncoder();
         angleController = mAngleMotor.getClosedLoopController();
 
-        configAngleMotor();
+        mAngleMotor.configure(
+            Configs.SwerveModule.angleConfig,
+            ResetMode.kResetSafeParameters, 
+            PersistMode.kPersistParameters
+        );
+
+        resetToAbsolute();
 
         /* Drive Configs */
 
@@ -79,7 +82,13 @@ public class SwerveModule {
         driveEncoder.setPosition(0);
         driveController = mDriveMotor.getClosedLoopController();
 
-        configDriveMotor();
+        mDriveMotor.configure(
+            Configs.SwerveModule.driveConfig,
+            ResetMode.kResetSafeParameters,
+            PersistMode.kPersistParameters
+        );
+
+        resetToAbsolute();
 
         lastAngle = getState().angle;
     }
@@ -121,58 +130,6 @@ public class SwerveModule {
     public Rotation2d getAbsoluteEncoder() {
         double absolutePositionDegrees = angleEncoder.getVoltage() / RobotController.getVoltage5V() * 360;
         return Rotation2d.fromDegrees(absolutePositionDegrees);
-    }
-
-    public void configAngleMotor() {
-        angleConfig
-        .inverted(Constants.Swerve.angleMotorInvert)
-        .idleMode(Constants.Swerve.angleNeutralMode)
-        .smartCurrentLimit(Constants.Swerve.angleContinuousCurrentLimit);
-
-        angleConfig.encoder
-        .positionConversionFactor(Constants.Swerve.angleConversionFactor);
-
-        angleConfig.closedLoop
-        .pidf(Constants.Swerve.angleKP, Constants.Swerve.angleKI, Constants.Swerve.angleKD, Constants.Swerve.angleKFF);
-        
-        angleConfig.signals
-        .primaryEncoderPositionAlwaysOn(true)
-        .primaryEncoderPositionPeriodMs(10)
-        .primaryEncoderVelocityAlwaysOn(true)
-        .primaryEncoderVelocityPeriodMs(20)
-        .appliedOutputPeriodMs(20)
-        .busVoltagePeriodMs(20)
-        .outputCurrentPeriodMs(20);
-         
-        mAngleMotor.configure(angleConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-        resetToAbsolute();
-    }
-
-    public void configDriveMotor() {
-        driveConfig
-        .inverted(Constants.Swerve.driveMotorInvert)
-        .idleMode(Constants.Swerve.driveNeutralMode)
-        .smartCurrentLimit(Constants.Swerve.driveContinuousCurrentLimit);
-
-        driveConfig.encoder
-        .positionConversionFactor(Constants.Swerve.driveConversionPositionFactor);
-
-        driveConfig.closedLoop
-        .pidf(Constants.Swerve.driveKP, Constants.Swerve.driveKI, Constants.Swerve.driveKD, Constants.Swerve.driveKFF);
-
-        driveConfig.signals
-        .primaryEncoderPositionAlwaysOn(true)
-        .primaryEncoderPositionPeriodMs(10)
-        .primaryEncoderVelocityAlwaysOn(true)
-        .primaryEncoderVelocityPeriodMs(20)
-        .appliedOutputPeriodMs(20)
-        .busVoltagePeriodMs(20)
-        .outputCurrentPeriodMs(20);
-         
-        mDriveMotor.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-        resetToAbsolute();
     }
 
     public SwerveModuleState getState() {
