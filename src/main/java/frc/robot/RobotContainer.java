@@ -78,6 +78,7 @@ public class RobotContainer {
   private final Intake intake = new Intake();
   private final Elevator elevator = new Elevator();
   private final Wrist wrist = new Wrist();
+  private final Climber climber = new Climber();
 
   public RobotContainer() {
     s_Swerve.setDefaultCommand(

@@ -1,0 +1,43 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CFL.1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CFL.2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CFL.3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CFL.4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CFL.5"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "3 Coral Far Left",
+  "choreoAuto": false
+}

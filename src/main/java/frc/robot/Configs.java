@@ -5,8 +5,6 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
-import frc.robot.Constants;
-
 public final class Configs {
     public final class SwerveModule {
         public static final SparkMaxConfig angleConfig = new SparkMaxConfig();
@@ -119,7 +117,7 @@ public final class Configs {
     }
 
     public final class Wrist {
-        static final SparkFlexConfig wristConfig = new SparkFlexConfig();
+        public static final SparkFlexConfig wristConfig = new SparkFlexConfig();
 
         static {
             wristConfig
@@ -129,6 +127,16 @@ public final class Configs {
                 .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
                 .p(0.1)
                 .outputRange(-1, 1);
+        }
+    }
+
+    public final class Climber {
+        public static final SparkMaxConfig climberConfig = new SparkMaxConfig();
+
+        static {
+            climberConfig
+                .inverted(false)
+                .smartCurrentLimit(40);
         }
     }
 }

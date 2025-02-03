@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.0627525252525247,
-        "y": 2.175126262626262
+        "x": 7.3,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.062752525252523,
-        "y": 2.175126262626262
+        "x": 7.05,
+        "y": 4.0
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.96969696969697,
-        "y": 2.175126262626262
+        "x": 6.0,
+        "y": 3.85
       },
       "prevControl": {
-        "x": 4.96969696969697,
-        "y": 2.175126262626262
+        "x": 6.25,
+        "y": 3.85
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,7 +45,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "3 Coral Center",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0
