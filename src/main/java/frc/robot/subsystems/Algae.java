@@ -23,8 +23,8 @@ public class Algae extends SubsystemBase {
             PersistMode.kPersistParameters
         );
 
-        pivotMotor.configure(
-            Configs.Algae.pivotConfig,
+        intakeMotor.configure(
+            Configs.Algae.intakeConfig,
             ResetMode.kResetSafeParameters,
             PersistMode.kPersistParameters
         );
@@ -55,6 +55,6 @@ public class Algae extends SubsystemBase {
     }
 
     public void algaeIdle() {
-        intakeMotor.setVoltage(-1);
+        intakeMotor.setVoltage(-2);
     }
 }
