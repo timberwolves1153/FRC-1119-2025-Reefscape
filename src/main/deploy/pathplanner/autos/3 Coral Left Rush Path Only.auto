@@ -7,37 +7,37 @@
         {
           "type": "path",
           "data": {
-            "pathName": "3CFL.1"
+            "pathName": "3CLR.1"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "3CFL.2"
+            "pathName": "3CLR.2"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "3CFL.3"
+            "pathName": "3CLR.3"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "3CFL.4"
+            "pathName": "3CLR.4"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "3CFL.5"
+            "pathName": "3CLR.5"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "3 Coral Far Left",
+  "folder": "3 Coral Left Rush",
   "choreoAuto": false
 }

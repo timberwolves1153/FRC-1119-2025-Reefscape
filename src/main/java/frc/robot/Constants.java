@@ -154,14 +154,14 @@ public final class Constants {
   }  
 
   public static final class ElevatorSetpoints {
-    public static final int kFeederStation = 0;
+    public static final int FeederStation = 0;
     public static final int L1 = 0;
     public static final int L2 = 0;
     public static final int L3 = 0;
   }
 
   public static final class WristSetpoints {
-    public static final int kFeederStation = 33;
+    public static final int FeederStation = 33;
     public static final int L1 = 0;
     public static final int L2 = 2;
     public static final int L3 = 2;

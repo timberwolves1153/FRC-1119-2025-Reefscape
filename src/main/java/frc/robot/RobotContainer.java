@@ -50,26 +50,26 @@ public class RobotContainer {
   private final POVButton DrivePOVLeft = new POVButton(driver, 270);
   private final POVButton DrivePOVRight = new POVButton(driver, 90);
 
-  /* Operator Buttons */
+  /* operator Buttons */
 
-  private final JoystickButton OpA = new JoystickButton(driver, XboxController.Button.kA.value);
-  private final JoystickButton OpB = new JoystickButton(driver, XboxController.Button.kB.value);
-  private final JoystickButton OpX = new JoystickButton(driver, XboxController.Button.kX.value);
-  private final JoystickButton OpY = new JoystickButton(driver, XboxController.Button.kY.value);
+  private final JoystickButton opA = new JoystickButton(operator, XboxController.Button.kA.value);
+  private final JoystickButton opB = new JoystickButton(operator, XboxController.Button.kB.value);
+  private final JoystickButton opX = new JoystickButton(operator, XboxController.Button.kX.value);
+  private final JoystickButton opY = new JoystickButton(operator, XboxController.Button.kY.value);
 
-  private final JoystickButton OpLeftBumper = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-  private final JoystickButton OpRightBumper = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+  private final JoystickButton opLeftBumper = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+  private final JoystickButton opRightBumper = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
 
-  private final AxisButton OpLeftTrigger = new AxisButton(driver, XboxController.Axis.kLeftTrigger.value, 0.5);
-  private final AxisButton OpRightTrigger = new AxisButton(driver, XboxController.Axis.kRightTrigger.value ,0.5);
+  private final AxisButton opLeftTrigger = new AxisButton(operator, XboxController.Axis.kLeftTrigger.value, 0.5);
+  private final AxisButton opRightTrigger = new AxisButton(operator, XboxController.Axis.kRightTrigger.value ,0.5);
 
-  private final JoystickButton OpLeftStick = new JoystickButton(driver, XboxController.Button.kRightStick.value);
-  private final JoystickButton OpRightStick = new JoystickButton(driver, XboxController.Button.kRightStick.value);
+  private final JoystickButton opLeftStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
+  private final JoystickButton opRightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
 
-  private final POVButton OpPOVUp = new POVButton(driver, 180);
-  private final POVButton OpPOVDown = new POVButton(driver, 0);
-  private final POVButton OpPOVLeft = new POVButton(driver, 270);
-  private final POVButton OpPOVRight = new POVButton(driver, 90);
+  private final POVButton opPOVUp = new POVButton(operator, 180);
+  private final POVButton opPOVDown = new POVButton(operator, 0);
+  private final POVButton opPOVLeft = new POVButton(operator, 270);
+  private final POVButton opPOVRight = new POVButton(operator, 90);
 
   /* Subsystems */
 
@@ -92,12 +92,12 @@ public class RobotContainer {
 
     /* Named Commands */
 
-    // NamedCommands.registerCommand("Elevator Feeder", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.kFeederStation), elevator));
+    // NamedCommands.registerCommand("Elevator Feeder", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.FeederStation), elevator));
     // NamedCommands.registerCommand("Elevator L1", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L1), elevator));
     // NamedCommands.registerCommand("Elevator L2", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L2), elevator));
     // NamedCommands.registerCommand("Elevator L3", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L3), elevator));
 
-    // NamedCommands.registerCommand("Wrist Feeder", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.kFeederStation), wrist));
+    // NamedCommands.registerCommand("Wrist Feeder", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.FeederStation), wrist));
     // NamedCommands.registerCommand("Wrist L1", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L1), wrist));
     // NamedCommands.registerCommand("Wrist L2", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L2), wrist));
     // NamedCommands.registerCommand("Wrist L3", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L3), wrist));
@@ -117,21 +117,39 @@ public class RobotContainer {
   /* Driver Buttons */
 
   driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
-  driveA.onTrue(new PathPlannerAuto("straightAuto2"));
-  //driveA.onFalse(new InstantCommand(() -> s_Swerve.xPosition(false)));
+  
+  // driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
+  // driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
+
+  // driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
+  // driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
 
   /* Operator Buttons */
-  driveB.onTrue(new InstantCommand(() -> s_Swerve.resetEncoders()));
 
-  driveRightTrigger.onTrue(new InstantCommand(() -> algae.pivotDown(), algae));
-  driveRightTrigger.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
-  driveRightBumper.onTrue(new InstantCommand(() -> algae.pivotUp(), algae));
-  driveRightBumper.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
+  // opX.onTrue(new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.FeederStation), elevator));
+  // opA.onTrue(new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L1), elevator));
+  // opB.onTrue(new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L2), elevator));
+  // opY.onTrue(new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L3), elevator));
+
+  // opX.onTrue(new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.FeederStation), wrist));
+  // opA.onTrue(new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L1), wrist));
+  // opB.onTrue(new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L2), wrist));
+  // opY.onTrue(new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L3), wrist));
+
+  // opPOVUp.onTrue(new InstantCommand(() -> intake.intakeOut(), intake));
+  // opPOVUp.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
+  // opPOVDown.onTrue(new InstantCommand(() -> intake.intakeIn(), intake));
+  // opPOVDown.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
+
+  opRightBumper.onTrue(new InstantCommand(() -> algae.pivotDown(), algae));
+  opRightBumper.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
+  opRightTrigger.onTrue(new InstantCommand(() -> algae.pivotUp(), algae));
+  opRightTrigger.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
   
-  driveLeftTrigger.onTrue(new InstantCommand(() -> algae.algaeIntake(), algae));
-  driveLeftTrigger.onFalse(new InstantCommand(() -> algae.algaeStop(), algae));
-  driveLeftBumper.onTrue(new InstantCommand(() -> algae.algaeOuttake(), algae));
-  driveLeftBumper.onFalse(new InstantCommand(() -> algae.algaeStop(), algae));
+  opLeftBumper.onTrue(new InstantCommand(() -> algae.algaeIntake(), algae));
+  opLeftBumper.onFalse(new InstantCommand(() -> algae.algaeIdle(), algae));
+  opLeftTrigger.onTrue(new InstantCommand(() -> algae.algaeOuttake(), algae));
+  opLeftTrigger.onFalse(new InstantCommand(() -> algae.algaeIdle(), algae));
 
   }
 
@@ -139,13 +157,13 @@ public class RobotContainer {
     return driver;
   }
 
-  public Joystick getOperatorController() {
+  public Joystick getoperatorController() {
     return operator;
   }
 
   public Command getAutonomousCommand() {
     return autoChooser.getSelected();
-    // return new PathPlannerAuto("straightAuto2");
+    // return new PathPlannerAuto("straightAuto");
   }
 
   public void resetEncoders() {

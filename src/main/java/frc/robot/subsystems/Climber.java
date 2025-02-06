@@ -5,9 +5,10 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs;
 
-public class Climber {
+public class Climber extends SubsystemBase {
     // private SparkMax climberMotor;
 
     // public Climber() {

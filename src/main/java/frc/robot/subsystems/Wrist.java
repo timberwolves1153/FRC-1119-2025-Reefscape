@@ -11,12 +11,13 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Configs;
 import frc.robot.Constants.ElevatorSetpoints;
 import frc.robot.Constants.WristSetpoints;
 // import frc.robot.subsystems.Elevator.Setpoint;
 
 public class Wrist extends SubsystemBase {
-    // private double wristCurrentTarget = ElevatorSetpoints.kFeederStation;
+    // private double wristCurrentTarget = ElevatorSetpoints.FeederStation;
     
     // private SparkFlex wristMotor;
 
@@ -24,7 +25,7 @@ public class Wrist extends SubsystemBase {
     // private RelativeEncoder wristEncoder = wristMotor.getEncoder();
 
     // public Wrist() {
-    //     wristMotor = new SparkFlex(54, MotorType.kBrushless); //TODO: set ID
+    //     wristMotor = new SparkFlex(54, MotorType.kBrushless);
 
     //     wristMotor.configure(
     //         Configs.Wrist.wristConfig,
@@ -43,8 +44,8 @@ public class Wrist extends SubsystemBase {
     //     return this.runOnce(
     //         () -> {
     //             switch (setpoint) {
-    //                 case kFeederStation:
-    //                     wristCurrentTarget = WristSetpoints.kFeederStation;
+    //                 case FeederStation:
+    //                     wristCurrentTarget = WristSetpoints.FeederStation;
     //                     break;
     //                 case L1:
     //                     wristCurrentTarget = WristSetpoints.L1;

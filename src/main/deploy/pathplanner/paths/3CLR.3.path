@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5638721696836066,
-        "y": 1.2745466039349083
+        "x": 1.560218550802805,
+        "y": 1.7514013597550049
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.85,
-        "y": 2.6
+        "x": 3.0,
+        "y": 3.85
       },
       "prevControl": {
-        "x": 2.9066034145957316,
-        "y": 2.049281586054299
+        "x": 2.7502202903990827,
+        "y": 3.3835365691665134
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
-    "maxAcceleration": 2.5,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 59.99999999999999
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "3 Coral Far Left",
+  "folder": "3 Coral Left Rush",
   "idealStartingState": {
-    "velocity": 0,
-    "rotation": 54.0
+    "velocity": 0.0,
+    "rotation": -126.0
   },
   "useDefaultConstraints": true
 }

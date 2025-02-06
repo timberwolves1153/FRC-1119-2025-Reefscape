@@ -8,23 +8,26 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Configs;
 import frc.robot.Constants.ElevatorSetpoints;
 
 public class Elevator extends SubsystemBase {
     // public enum Setpoint {
-    //     kFeederStation,
+    //     FeederStation,
     //     L1,
     //     L2,
     //     L3
     // }
 
     // private boolean resetByButton = false;
+    // private boolean resetByLimit = false;
 
-    // private double elevatorCurrentTarget = ElevatorSetpoints.kFeederStation;
+    // private double elevatorCurrentTarget = ElevatorSetpoints.FeederStation;
     
     // private SparkFlex elevatorMotorL;
     // private SparkFlex elevatorMotorR;
@@ -32,8 +35,10 @@ public class Elevator extends SubsystemBase {
     // private SparkClosedLoopController elevatorController = elevatorMotorL.getClosedLoopController();
     // private RelativeEncoder elevatorEncoder = elevatorMotorL.getEncoder();
 
+    // DigitalInput elevatorLimit = new DigitalInput(0); //TODO: set ID
+
     // public Elevator() {
-    //     elevatorMotorL = new SparkFlex(51, MotorType.kBrushless); //TODO: set ID
+    //     elevatorMotorL = new SparkFlex(51, MotorType.kBrushless);
     //     elevatorMotorR = new SparkFlex(52, MotorType.kBrushless);
 
     //     elevatorMotorL.configure(
@@ -52,7 +57,7 @@ public class Elevator extends SubsystemBase {
     // }
 
     // private void elevatorResetByButton() {
-    //     if(!resetByButton && RobotController.getUserButton()) {
+    //     if (!resetByButton && RobotController.getUserButton()) {
     //         resetByButton = true;
     //         elevatorEncoder.setPosition(0);
     //     } else if (!RobotController.getUserButton()) {
@@ -61,7 +66,12 @@ public class Elevator extends SubsystemBase {
     // }
 
     // private void elevatorResetByLimit() {
-    //     //TODO: do it when get limit
+    //     if (!resetByLimit && elevatorLimit.get()) {
+    //         resetByLimit = true;
+    //         elevatorEncoder.setPosition(0);
+    //     } else if (!elevatorLimit.get()) {
+    //         resetByLimit = false;
+    //     }
     // }
 
     // private void elevatorToSetpoint() {
@@ -74,8 +84,8 @@ public class Elevator extends SubsystemBase {
     //     return this.runOnce(
     //         () -> {
     //             switch (setpoint) {
-    //                 case kFeederStation:
-    //                     elevatorCurrentTarget = ElevatorSetpoints.kFeederStation;
+    //                 case FeederStation:
+    //                     elevatorCurrentTarget = ElevatorSetpoints.FeederStation;
     //                     break;
     //                 case L1:
     //                     elevatorCurrentTarget = ElevatorSetpoints.L1;
@@ -94,6 +104,8 @@ public class Elevator extends SubsystemBase {
     // @Override
     // public void periodic() {
     //     elevatorToSetpoint();
+    //     elevatorResetByButton();
+    //     elevatorResetByLimit();
 
     //     SmartDashboard.putNumber("Elevator Target Position", elevatorCurrentTarget);
     //     SmartDashboard.putNumber("Elevator True Position", elevatorEncoder.getPosition());
