@@ -30,8 +30,7 @@ import static edu.wpi.first.units.Units.Volts;
 
 
 public class Swerve extends SubsystemBase {
-    public SwerveDriveOdometry 
-    swerveOdometry;
+    public SwerveDriveOdometry swerveOdometry;
     public SwerveModule[] mSwerveModules;
     public SwerveDriveKinematics swerveKinematics;
     public Pigeon2 gyro;
@@ -86,7 +85,6 @@ public class Swerve extends SubsystemBase {
         resetModulesToAbsolute();
         
         swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getAngle(), getModulePositions());
-        
 
         AutoBuilder.configure(
             this::getPose,
@@ -94,8 +92,8 @@ public class Swerve extends SubsystemBase {
             this::getRobotRelativeSpeeds,
             (speeds, feedforwards) -> driveRobotRelative(speeds),
             new PPHolonomicDriveController(
-                    new PIDConstants(5.0, 0.0, 0.0),
-                    new PIDConstants(5.0, 0.0, 0.0)
+                    new PIDConstants(1.0, 0.0, 0.0),
+                    new PIDConstants(1.0, 0.0, 0.0)
             ),
             config,
             () -> {
@@ -221,10 +219,11 @@ public class Swerve extends SubsystemBase {
     @Override
     public void periodic() {
         swerveOdometry.update(getAngle(), getModulePositions());
-         m_poseEstimatorField.setRobotPose(swerveOdometry.getPoseMeters());
-         SmartDashboard.putData("Pose Estimator Field", m_poseEstimatorField);
+        m_poseEstimatorField.setRobotPose(swerveOdometry.getPoseMeters());
 
-        
+        SmartDashboard.putData("Pose Estimator Field", m_poseEstimatorField);
+        SmartDashboard.putNumber("Pose X", swerveOdometry.getPoseMeters().getX());
+        SmartDashboard.putNumber("Pose Y", swerveOdometry.getPoseMeters().getY());
 
         for(SwerveModule mod : mSwerveModules){
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " absoluteEncoderPorts", mod.getAbsoluteEncoder().getDegrees());

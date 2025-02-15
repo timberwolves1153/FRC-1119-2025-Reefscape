@@ -96,11 +96,13 @@ public final class Configs {
         static {
             elevatorConfigL
                 .idleMode(IdleMode.kBrake)
+                .inverted(false)
                 .smartCurrentLimit(40)
                 .voltageCompensation(12);
 
             elevatorConfigR
                 .idleMode(IdleMode.kBrake)
+                .inverted(true)
                 .smartCurrentLimit(40)
                 .voltageCompensation(12);
 

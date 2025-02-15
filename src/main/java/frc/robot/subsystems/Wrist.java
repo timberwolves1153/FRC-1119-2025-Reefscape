@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs;
 import frc.robot.Constants.ElevatorSetpoints;
 import frc.robot.Constants.WristSetpoints;
-// import frc.robot.subsystems.Elevator.Setpoint;
+import frc.robot.subsystems.Elevator.Setpoint;
 
 public class Wrist extends SubsystemBase {
     // private double wristCurrentTarget = ElevatorSetpoints.FeederStation;

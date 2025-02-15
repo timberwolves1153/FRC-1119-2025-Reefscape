@@ -17,7 +17,7 @@ public class NEOSwerveConstants {
     public final boolean angleMotorInvert;
     public final boolean absoluteEncoderPortsInvert;
 
-    public NEOSwerveConstants(double wheelDiameter, double angleGearRatio, double driveGearRatio, double angleKP, double angleKI, double angleKD, double angleKFF, boolean driveMotorInvert, boolean angleMotorInvert, boolean absoluteEncoderPortsInvert){
+    public  NEOSwerveConstants(double wheelDiameter, double angleGearRatio, double driveGearRatio, double angleKP, double angleKI, double angleKD, double angleKFF, boolean driveMotorInvert, boolean angleMotorInvert, boolean absoluteEncoderPortsInvert){
         this.wheelDiameter = wheelDiameter;
         this.wheelCircumference = wheelDiameter * Math.PI;
         this.angleGearRatio = angleGearRatio;

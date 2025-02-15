@@ -7,13 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "straightPath"
+            "pathName": "leavePath"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "3 Coral Left",
   "choreoAuto": false
 }
