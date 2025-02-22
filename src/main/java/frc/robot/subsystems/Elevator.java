@@ -17,7 +17,7 @@ import frc.robot.Configs;
 import frc.robot.Constants.ElevatorSetpoints;
 
 public class Elevator extends SubsystemBase {
-    public enum Setpoint {
+    public enum ElevatorSetpoint {
         FeederStation,
         L1,
         L2,
@@ -27,7 +27,7 @@ public class Elevator extends SubsystemBase {
     private boolean resetByButton = false;
     private boolean resetByLimit = false;
 
-    private double elevatorCurrentTarget = ElevatorSetpoints.FeederStation;
+    private double elevatorCurrentTarget;
     
     private SparkFlex elevatorMotorL;
     private SparkFlex elevatorMotorR;
@@ -35,7 +35,7 @@ public class Elevator extends SubsystemBase {
     private SparkClosedLoopController elevatorController;
     private RelativeEncoder elevatorEncoder;
 
-    DigitalInput elevatorLimit = new DigitalInput(0); //TODO: set DIO
+    DigitalInput elevatorLimit = new DigitalInput(4);
 
     public Elevator() {
         elevatorMotorL = new SparkFlex(51, MotorType.kBrushless);
@@ -43,6 +43,8 @@ public class Elevator extends SubsystemBase {
 
         elevatorController = elevatorMotorL.getClosedLoopController();
         elevatorEncoder = elevatorMotorL.getEncoder();
+
+        elevatorCurrentTarget = ElevatorSetpoints.FeederStation;
 
         elevatorMotorL.configure(
             Configs.Elevator.elevatorConfigL,
@@ -59,13 +61,8 @@ public class Elevator extends SubsystemBase {
         elevatorEncoder.setPosition(0);
     }
 
-    private void elevatorResetByButton() {
-        if (!resetByButton && RobotController.getUserButton()) {
-            resetByButton = true;
-            elevatorEncoder.setPosition(0);
-        } else if (!RobotController.getUserButton()) {
-            resetByButton = false;
-        }
+    public void elevatorResetByButton() {
+        elevatorEncoder.setPosition(0);
     }
 
     private void elevatorResetByLimit() {
@@ -83,27 +80,27 @@ public class Elevator extends SubsystemBase {
         );
     }
 
+    public void elevatorToSetpointNonPeriodic(double position) {
+        elevatorController.setReference(position, ControlType.kMAXMotionPositionControl);
+    }
+
     public void elevatorUp() {
-        elevatorMotorL.setVoltage(-2);
-        elevatorMotorR.setVoltage(-2);
+        elevatorMotorL.setVoltage(-1);
     }
 
     public void elevatorDown() {
-        elevatorMotorL.setVoltage(2);
-        elevatorMotorR.setVoltage(2);
+        elevatorMotorL.setVoltage(1);
     }
 
     public void elevatorStop() {
         elevatorMotorL.setVoltage(0);
-        elevatorMotorR.setVoltage(0);
     }
 
     public void elevatorIdle() {
-        elevatorMotorL.setVoltage(-0.2);
-        elevatorMotorR.setVoltage(-0.2);
+        elevatorMotorL.setVoltage(-0.25);
     }
 
-    public Command setElevatorSetpoint(Setpoint setpoint) {
+    public Command setElevatorSetpoint(ElevatorSetpoint setpoint) {
         return this.runOnce(
             () -> {
                 switch (setpoint) {
@@ -126,8 +123,7 @@ public class Elevator extends SubsystemBase {
 
     @Override
     public void periodic() {
-        // elevatorToSetpoint();
-        // elevatorResetByButton();
+        elevatorToSetpoint();
         // elevatorResetByLimit();
 
         SmartDashboard.putNumber("Elevator Target Position", elevatorCurrentTarget);

@@ -16,7 +16,8 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.lib.util.AxisButton;
 import frc.robot.subsystems.*;
-// import frc.robot.subsystems.Elevator.Setpoint;
+import frc.robot.subsystems.Elevator.ElevatorSetpoint;
+import frc.robot.subsystems.Wrist.WristSetpoint;
 
 public class RobotContainer {
   private final Joystick driver = new Joystick(0);
@@ -115,9 +116,7 @@ public class RobotContainer {
 
   public void configureButtonBindings() {
 
-  /* Driver Buttons */
-
-  driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+  /* Testing */
 
   // driveY.whileTrue(s_Swerve.sysIdQuasistatic(Direction.kForward));
   // driveA.whileTrue(s_Swerve.sysIdQuasistatic(Direction.kReverse));
@@ -126,7 +125,11 @@ public class RobotContainer {
   // driveB.whileTrue(s_Swerve.sysIdDynamic(Direction.kReverse));
 
   // driveLeftStick.onTrue(new InstantCommand(() -> s_Swerve.resetEncoders(), s_Swerve));
-  
+
+  /* Driver Buttons */
+
+  driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+
   // driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
   // driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
 
@@ -135,20 +138,30 @@ public class RobotContainer {
 
   /* Operator Buttons */
 
-  opRightStick.onTrue(new InstantCommand(() -> elevator.elevatorUp(), elevator));
-  opRightStick.onFalse(new InstantCommand(() -> elevator.elevatorIdle(), elevator));
-  opLeftStick.onTrue(new InstantCommand(() -> elevator.elevatorDown(), elevator));
-  opLeftStick.onFalse(new InstantCommand(() -> elevator.elevatorIdle(), elevator));
+  // opY.onTrue(new InstantCommand(() -> elevator.elevatorUp(), elevator));
+  // opY.onFalse(new InstantCommand(() -> elevator.elevatorIdle(), elevator));
+  // opA.onTrue(new InstantCommand(() -> elevator.elevatorDown(), elevator));
+  // opA.onFalse(new InstantCommand(() -> elevator.elevatorIdle(), elevator));
 
-  // opX.onTrue(new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.FeederStation), elevator));
-  // opA.onTrue(new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L1), elevator));
-  // opB.onTrue(new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L2), elevator));
-  // opY.onTrue(new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L3), elevator));
+  // opB.onTrue(new InstantCommand(() -> wrist.wristUp(), wrist));
+  // opB.onFalse(new InstantCommand(() -> wrist.wristIdle(), wrist));
+  // opX.onTrue(new InstantCommand(() -> wrist.wristDown(), wrist));
+  // opX.onFalse(new InstantCommand(() -> wrist.wristIdle(), wrist));
 
-  // opX.onTrue(new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.FeederStation), wrist));
-  // opA.onTrue(new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L1), wrist));
-  // opB.onTrue(new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L2), wrist));
-  // opY.onTrue(new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L3), wrist));
+  opPOVUp.onTrue(new InstantCommand(() -> intake.intakeOut(), intake));
+  opPOVUp.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
+  opPOVDown.onTrue(new InstantCommand(() -> intake.intakeIn(), intake));
+  opPOVDown.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
+  
+  opX.onTrue(elevator.setElevatorSetpoint(ElevatorSetpoint.FeederStation));
+  opA.onTrue(elevator.setElevatorSetpoint(ElevatorSetpoint.L1));
+  opB.onTrue(elevator.setElevatorSetpoint(ElevatorSetpoint.L2));
+  opY.onTrue(elevator.setElevatorSetpoint(ElevatorSetpoint.L3));
+
+  opX.onTrue(wrist.setWristSetpoint(WristSetpoint.FeederStation));
+  opA.onTrue(wrist.setWristSetpoint(WristSetpoint.L1));
+  opB.onTrue(wrist.setWristSetpoint(WristSetpoint.L2));
+  opY.onTrue(wrist.setWristSetpoint(WristSetpoint.L3));
 
   // opPOVUp.onTrue(new InstantCommand(() -> intake.intakeOut(), intake));
   // opPOVUp.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
@@ -165,13 +178,15 @@ public class RobotContainer {
   opLeftTrigger.onTrue(new InstantCommand(() -> algae.algaeOuttake(), algae));
   opLeftTrigger.onFalse(new InstantCommand(() -> algae.algaeIdle(), algae));
 
+  opRightStick.onTrue(new InstantCommand(() -> elevator.elevatorResetByButton(), elevator));
   }
+
 
   public Joystick getDriveController() {
     return driver;
   }
 
-  public Joystick getoperatorController() {
+  public Joystick getOperatorController() {
     return operator;
   }
 

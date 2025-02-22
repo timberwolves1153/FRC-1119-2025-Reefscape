@@ -100,21 +100,22 @@ public final class Configs {
                 .smartCurrentLimit(40)
                 .voltageCompensation(12);
 
-            elevatorConfigR
-                .idleMode(IdleMode.kBrake)
-                .inverted(true)
-                .smartCurrentLimit(40)
-                .voltageCompensation(12);
-
             elevatorConfigL.closedLoop
                 .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
                 .p(0.1)
                 .outputRange(-1, 1);
 
             elevatorConfigL.closedLoop.maxMotion
-                .maxVelocity(4200)
-                .maxAcceleration(6000)
+                .maxVelocity(150)
+                .maxAcceleration(2500)
                 .allowedClosedLoopError(0.5);
+
+            elevatorConfigR
+                .idleMode(IdleMode.kBrake)
+                .inverted(false)
+                .follow(51, true)
+                .smartCurrentLimit(40)
+                .voltageCompensation(12);
         }
     }
 
@@ -127,8 +128,12 @@ public final class Configs {
                 .smartCurrentLimit(40);
             wristConfig.closedLoop
                 .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-                .p(0.1)
+                .pid(0.14, 0, 0.245)
                 .outputRange(-1, 1);
+            wristConfig.closedLoop.maxMotion
+                .maxVelocity(1500)
+                .maxAcceleration(2500)
+                .allowedClosedLoopError(0.5);
         }
     }
 

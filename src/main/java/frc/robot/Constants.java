@@ -155,16 +155,16 @@ public final class Constants {
   }  
 
   public static final class ElevatorSetpoints {
-    public static final int FeederStation = 0;
-    public static final int L1 = 0;
-    public static final int L2 = 0;
-    public static final int L3 = 0;
+    public static final double FeederStation = 0;
+    public static final double L1 = 0;
+    public static final double L2 = -6.6;
+    public static final double L3 = -32.6;
   }
 
   public static final class WristSetpoints {
-    public static final int FeederStation = 0;
-    public static final int L1 = 0;
-    public static final int L2 = 0;
-    public static final int L3 = 0;
+    public static final double FeederStation = -10.6;
+    public static final double L1 = -10.6;
+    public static final double L2 = -42.2;
+    public static final double L3 = -42.6;
   }
 }
