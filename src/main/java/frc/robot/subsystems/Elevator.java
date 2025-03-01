@@ -9,7 +9,6 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -24,7 +23,6 @@ public class Elevator extends SubsystemBase {
         L3
     }
 
-    private boolean resetByButton = false;
     private boolean resetByLimit = false;
 
     private double elevatorCurrentTarget;
@@ -81,7 +79,9 @@ public class Elevator extends SubsystemBase {
     }
 
     public void elevatorToSetpointNonPeriodic(double position) {
-        elevatorController.setReference(position, ControlType.kMAXMotionPositionControl);
+            elevatorController.setReference(position,
+            ControlType.kMAXMotionPositionControl
+        );
     }
 
     public void elevatorUp() {

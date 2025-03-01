@@ -9,26 +9,26 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs;
 
 public class Climber extends SubsystemBase {
-    // private SparkMax climberMotor;
+    private SparkMax climberMotor;
 
-    // public Climber() {
-    //     climberMotor = new SparkMax(0, MotorType.kBrushless); //TOOO: set ID
+    public Climber() {
+        climberMotor = new SparkMax(61, MotorType.kBrushless);
 
-    //     climberMotor.configure(
-    //         Configs.Climber.climberConfig,
-    //         ResetMode.kResetSafeParameters,
-    //         PersistMode.kPersistParameters);
-    // }
+        climberMotor.configure(
+            Configs.Climber.climberConfig,
+            ResetMode.kResetSafeParameters,
+            PersistMode.kPersistParameters);
+    }
 
-    // public void climberUp() {
-    //     climberMotor.setVoltage(0);
-    // }
+    public void climberUp() {
+        climberMotor.setVoltage(2);
+    }
 
-    // public void climberDown() {
-    //     climberMotor.setVoltage(0);
-    // }
+    public void climberDown() {
+        climberMotor.setVoltage(-2);
+    }
 
-    // public void climberStop() {
-    //     climberMotor.setVoltage(0); //TODO: set voltages
-    // }
+    public void climberStop() {
+        climberMotor.setVoltage(0);
+    }
 }

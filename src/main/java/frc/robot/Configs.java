@@ -106,9 +106,9 @@ public final class Configs {
                 .outputRange(-1, 1);
 
             elevatorConfigL.closedLoop.maxMotion
-                .maxVelocity(150)
+                .maxVelocity(750)
                 .maxAcceleration(2500)
-                .allowedClosedLoopError(0.5);
+                .allowedClosedLoopError(0.1);
 
             elevatorConfigR
                 .idleMode(IdleMode.kBrake)
@@ -133,7 +133,7 @@ public final class Configs {
             wristConfig.closedLoop.maxMotion
                 .maxVelocity(1500)
                 .maxAcceleration(2500)
-                .allowedClosedLoopError(0.5);
+                .allowedClosedLoopError(0.1);
         }
     }
 

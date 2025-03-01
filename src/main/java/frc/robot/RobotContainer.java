@@ -81,6 +81,7 @@ public class RobotContainer {
   private final Elevator elevator = new Elevator();
   private final Wrist wrist = new Wrist();
   private final Climber climber = new Climber();
+  private final Limelight limelight = new Limelight();
 
   public RobotContainer() {
     s_Swerve.setDefaultCommand(
@@ -126,15 +127,16 @@ public class RobotContainer {
 
   // driveLeftStick.onTrue(new InstantCommand(() -> s_Swerve.resetEncoders(), s_Swerve));
 
+  // driveA.whileTrue(new InstantCommand(() -> limelight.driveLimelight(), limelight));
+
   /* Driver Buttons */
 
   driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
 
-  // driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
-  // driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
-
-  // driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
-  // driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
+  driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
+  driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
+  driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
+  driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
 
   /* Operator Buttons */
 
@@ -147,11 +149,6 @@ public class RobotContainer {
   // opB.onFalse(new InstantCommand(() -> wrist.wristIdle(), wrist));
   // opX.onTrue(new InstantCommand(() -> wrist.wristDown(), wrist));
   // opX.onFalse(new InstantCommand(() -> wrist.wristIdle(), wrist));
-
-  opPOVUp.onTrue(new InstantCommand(() -> intake.intakeOut(), intake));
-  opPOVUp.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
-  opPOVDown.onTrue(new InstantCommand(() -> intake.intakeIn(), intake));
-  opPOVDown.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
   
   opX.onTrue(elevator.setElevatorSetpoint(ElevatorSetpoint.FeederStation));
   opA.onTrue(elevator.setElevatorSetpoint(ElevatorSetpoint.L1));
@@ -163,10 +160,10 @@ public class RobotContainer {
   opB.onTrue(wrist.setWristSetpoint(WristSetpoint.L2));
   opY.onTrue(wrist.setWristSetpoint(WristSetpoint.L3));
 
-  // opPOVUp.onTrue(new InstantCommand(() -> intake.intakeOut(), intake));
-  // opPOVUp.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
-  // opPOVDown.onTrue(new InstantCommand(() -> intake.intakeIn(), intake));
-  // opPOVDown.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
+  opPOVUp.onTrue(new InstantCommand(() -> intake.intakeOut(), intake));
+  opPOVUp.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
+  opPOVDown.onTrue(new InstantCommand(() -> intake.intakeIn(), intake));
+  opPOVDown.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
 
   opRightBumper.onTrue(new InstantCommand(() -> algae.pivotDown(), algae));
   opRightBumper.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
@@ -179,8 +176,8 @@ public class RobotContainer {
   opLeftTrigger.onFalse(new InstantCommand(() -> algae.algaeIdle(), algae));
 
   opRightStick.onTrue(new InstantCommand(() -> elevator.elevatorResetByButton(), elevator));
-  }
 
+  }
 
   public Joystick getDriveController() {
     return driver;
