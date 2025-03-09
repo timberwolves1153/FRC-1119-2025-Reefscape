@@ -5,41 +5,15 @@
     "data": {
       "commands": [
         {
-          "type": "parallel",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "3CL.1"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.25
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Elevator L2"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
+            "pathName": "3CL.1"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.1
+            "waitTime": 0.2
           }
         },
         {
@@ -51,7 +25,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.6
           }
         },
         {
@@ -61,41 +35,21 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "wait",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "3CL.2"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.5
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Elevator Feeder"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CL.2"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.25
+            "waitTime": 0.1
           }
         },
         {
@@ -107,7 +61,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.8
           }
         },
         {
@@ -117,41 +71,21 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "wait",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "3CL.3"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.5
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Elevator L2"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CL.3"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.1
+            "waitTime": 0.2
           }
         },
         {
@@ -163,7 +97,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.6
           }
         },
         {
@@ -173,41 +107,21 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "wait",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "3CL.4"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.5
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Elevator Feeder"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CL.4"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.25
+            "waitTime": 0.1
           }
         },
         {
@@ -219,7 +133,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.8
           }
         },
         {
@@ -229,41 +143,21 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "wait",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "3CL.5"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.5
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Elevator L2"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CL.5"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.1
+            "waitTime": 0.2
           }
         },
         {
@@ -275,13 +169,19 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.6
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Intake Stop"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
           }
         }
       ]

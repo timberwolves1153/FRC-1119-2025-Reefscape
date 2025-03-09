@@ -73,16 +73,22 @@ public final class Configs {
     }
 
     public final class Algae {
-        public static final SparkMaxConfig pivotConfig = new SparkMaxConfig();
-        public static final SparkFlexConfig intakeConfig = new SparkFlexConfig();
+        public static final SparkFlexConfig pivotConfig = new SparkFlexConfig();
+        public static final SparkMaxConfig intakeConfig = new SparkMaxConfig();
 
         static {
             pivotConfig
                 .smartCurrentLimit(40)
                 .idleMode(IdleMode.kBrake);
-        }
 
-        static {
+            pivotConfig.closedLoop
+                .p(0.1);
+
+            pivotConfig.closedLoop.maxMotion
+                .maxVelocity(3500)
+                .maxAcceleration(2500)
+                .allowedClosedLoopError(0.25);
+
             intakeConfig
                 .smartCurrentLimit(40)
                 .idleMode(IdleMode.kBrake);
@@ -106,8 +112,8 @@ public final class Configs {
                 .outputRange(-1, 1);
 
             elevatorConfigL.closedLoop.maxMotion
-                .maxVelocity(750)
-                .maxAcceleration(2500)
+                .maxVelocity(3000)
+                .maxAcceleration(3000)
                 .allowedClosedLoopError(0.1);
 
             elevatorConfigR
@@ -128,7 +134,7 @@ public final class Configs {
                 .smartCurrentLimit(40);
             wristConfig.closedLoop
                 .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-                .pid(0.14, 0, 0.245)
+                .pid(0.14, 0, 0.2)
                 .outputRange(-1, 1);
             wristConfig.closedLoop.maxMotion
                 .maxVelocity(1500)
@@ -138,7 +144,7 @@ public final class Configs {
     }
 
     public final class Climber {
-        public static final SparkMaxConfig climberConfig = new SparkMaxConfig();
+        public static final SparkFlexConfig climberConfig = new SparkFlexConfig();
 
         static {
             climberConfig

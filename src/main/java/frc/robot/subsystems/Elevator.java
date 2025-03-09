@@ -116,6 +116,9 @@ public class Elevator extends SubsystemBase {
                     case L3:
                         elevatorCurrentTarget = ElevatorSetpoints.L3;
                         break;
+                    default:
+                        elevatorCurrentTarget = ElevatorSetpoints.FeederStation;
+                        break;
                 }
             }
         );

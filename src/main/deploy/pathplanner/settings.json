@@ -14,7 +14,7 @@
     "3 Coral Right",
     "3 Coral Left Rush"
   ],
-  "defaultMaxVel": 3.0,
+  "defaultMaxVel": 3.5,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 360.0,
   "defaultMaxAngAccel": 360.0,

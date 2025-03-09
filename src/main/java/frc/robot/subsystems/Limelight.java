@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -13,7 +14,7 @@ public class Limelight extends SubsystemBase {
     private double limelightYAngle;
     private Translation2d limelightTranslation2d;
 
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight"); //name is set in limelight local
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
 
@@ -31,5 +32,11 @@ public class Limelight extends SubsystemBase {
         limelightTranslation2d = new Translation2d(getLimelightDistance(), getLimelightAngle());
 
         swerve.drive(limelightTranslation2d, getLimelightAngle(), false, true);
+    }
+
+    @Override
+    public void periodic() {
+        // SmartDashboard.putNumber("Limelight Angle", getLimelightAngle());
+        // SmartDashboard.putNumber("Limelight Distance", getLimelightDistance());
     }
 }

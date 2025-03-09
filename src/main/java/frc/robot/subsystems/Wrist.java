@@ -108,7 +108,6 @@ public class Wrist extends SubsystemBase {
     public void periodic() {
         wristToSetpoint();
         
-        
         SmartDashboard.putNumber("Wrist Target Position", wristCurrentTarget);
         SmartDashboard.putNumber("Wrist True Position", wristEncoder.getPosition());
     } 

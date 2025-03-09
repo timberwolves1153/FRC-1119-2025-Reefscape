@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs;
 
 public class Intake extends SubsystemBase {
-    private SparkMax intakeMotor;
+    public SparkMax intakeMotor;
 
     public Intake() {
         intakeMotor = new SparkMax(56, MotorType.kBrushless);
@@ -26,7 +26,7 @@ public class Intake extends SubsystemBase {
     }
 
     public void intakeOut() {
-        intakeMotor.setVoltage(10);
+        intakeMotor.setVoltage(12);
     }
 
     public void intakeStop() {

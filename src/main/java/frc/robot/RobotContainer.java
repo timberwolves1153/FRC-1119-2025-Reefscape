@@ -1,5 +1,7 @@
 package frc.robot;
 
+import java.security.AlgorithmParameterGenerator;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -9,13 +11,17 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.RunLEDs;
 import frc.robot.commands.TeleopSwerve;
 import frc.robot.lib.util.AxisButton;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.Algae.PivotSetpoint;
 import frc.robot.subsystems.Elevator.ElevatorSetpoint;
 import frc.robot.subsystems.Wrist.WristSetpoint;
 
@@ -24,6 +30,8 @@ public class RobotContainer {
   private final Joystick operator = new Joystick(1);
 
   private final SendableChooser<Command> autoChooser;
+
+  private boolean intaking = false;
 
   /* Driver Controls */
 
@@ -68,8 +76,8 @@ public class RobotContainer {
   private final JoystickButton opLeftStick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
   private final JoystickButton opRightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
 
-  private final POVButton opPOVUp = new POVButton(operator, 180);
-  private final POVButton opPOVDown = new POVButton(operator, 0);
+  public final POVButton opPOVUp = new POVButton(operator, 180);
+  public final POVButton opPOVDown = new POVButton(operator, 0);
   private final POVButton opPOVLeft = new POVButton(operator, 270);
   private final POVButton opPOVRight = new POVButton(operator, 90);
 
@@ -82,6 +90,7 @@ public class RobotContainer {
   private final Wrist wrist = new Wrist();
   private final Climber climber = new Climber();
   private final Limelight limelight = new Limelight();
+  private final LED LED = new LED();
 
   public RobotContainer() {
     s_Swerve.setDefaultCommand(
@@ -91,23 +100,33 @@ public class RobotContainer {
         () -> -driver.getRawAxis(strafeAxis),
         () -> -driver.getRawAxis(rotationAxis),
         () -> true
+
+    ));
+
+    LED.setDefaultCommand(
+      new RunLEDs(
+        LED,
+        () -> DrivePOVUp.getAsBoolean(),
+        () -> DrivePOVDown.getAsBoolean(),
+        () -> SmartDashboard.getNumber("Elevator True Position", 0)
+        
     ));
 
     /* Named Commands */
 
-    // NamedCommands.registerCommand("Elevator Feeder", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.FeederStation), elevator));
-    // NamedCommands.registerCommand("Elevator L1", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L1), elevator));
-    // NamedCommands.registerCommand("Elevator L2", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L2), elevator));
-    // NamedCommands.registerCommand("Elevator L3", new InstantCommand(() -> elevator.setElevatorSetpoint(Setpoint.L3), elevator));
+    NamedCommands.registerCommand("Elevator Feeder", elevator.setElevatorSetpoint(ElevatorSetpoint.FeederStation));
+    NamedCommands.registerCommand("Elevator L1", elevator.setElevatorSetpoint(ElevatorSetpoint.L1));
+    NamedCommands.registerCommand("Elevator L2", elevator.setElevatorSetpoint(ElevatorSetpoint.L2));
+    NamedCommands.registerCommand("Elevator L3", elevator.setElevatorSetpoint(ElevatorSetpoint.L3));
 
-    // NamedCommands.registerCommand("Wrist Feeder", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.FeederStation), wrist));
-    // NamedCommands.registerCommand("Wrist L1", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L1), wrist));
-    // NamedCommands.registerCommand("Wrist L2", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L2), wrist));
-    // NamedCommands.registerCommand("Wrist L3", new InstantCommand(() -> wrist.setWristSetpoint(Setpoint.L3), wrist));
+    NamedCommands.registerCommand("Wrist Feeder", wrist.setWristSetpoint(WristSetpoint.FeederStation));
+    NamedCommands.registerCommand("Wrist L1", wrist.setWristSetpoint(WristSetpoint.L1));
+    NamedCommands.registerCommand("Wrist L2", wrist.setWristSetpoint(WristSetpoint.L2));
+    NamedCommands.registerCommand("Wrist L3", wrist.setWristSetpoint(WristSetpoint.L3));
 
-    // NamedCommands.registerCommand("Intake In", new InstantCommand(() -> intake.intakeIn(), intake));
-    // NamedCommands.registerCommand("Intake Out", new InstantCommand(() -> intake.intakeOut(), intake));
-    // NamedCommands.registerCommand("Intake Stop", new InstantCommand(() -> intake.intakeStop(), intake));
+    NamedCommands.registerCommand("Intake In", new InstantCommand(() -> intake.intakeIn(), intake));
+    NamedCommands.registerCommand("Intake Out", new InstantCommand(() -> intake.intakeOut(), intake));
+    NamedCommands.registerCommand("Intake Stop", new InstantCommand(() -> intake.intakeStop(), intake));
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("AutoChooser", autoChooser);
@@ -136,6 +155,7 @@ public class RobotContainer {
   driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
   driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
   driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
+  driveA.onTrue(algae.setPivotSetpoint(PivotSetpoint.Climb));
   driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
 
   /* Operator Buttons */
@@ -165,17 +185,15 @@ public class RobotContainer {
   opPOVDown.onTrue(new InstantCommand(() -> intake.intakeIn(), intake));
   opPOVDown.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
 
-  opRightBumper.onTrue(new InstantCommand(() -> algae.pivotDown(), algae));
-  opRightBumper.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
-  opRightTrigger.onTrue(new InstantCommand(() -> algae.pivotUp(), algae));
-  opRightTrigger.onFalse(new InstantCommand(() -> algae.pivotStop(), algae));
+  opRightBumper.onTrue(algae.setPivotSetpoint(PivotSetpoint.Collect));
+  opRightTrigger.onTrue(algae.setPivotSetpoint(PivotSetpoint.Stow));
   
   opLeftBumper.onTrue(new InstantCommand(() -> algae.algaeIntake(), algae));
   opLeftBumper.onFalse(new InstantCommand(() -> algae.algaeIdle(), algae));
   opLeftTrigger.onTrue(new InstantCommand(() -> algae.algaeOuttake(), algae));
   opLeftTrigger.onFalse(new InstantCommand(() -> algae.algaeIdle(), algae));
 
-  opRightStick.onTrue(new InstantCommand(() -> elevator.elevatorResetByButton(), elevator));
+  // opRightStick.onTrue(new InstantCommand(() -> elevator.elevatorResetByButton(), elevator));
 
   }
 
