@@ -92,8 +92,8 @@ public class Swerve extends SubsystemBase {
             this::getRobotRelativeSpeeds,
             (speeds, feedforwards) -> driveRobotRelative(speeds),
             new PPHolonomicDriveController(
-                    new PIDConstants(1.0, 0.0, 0.0),
-                    new PIDConstants(1.0, 0.0, 0.0)
+                    new PIDConstants(5.0, 0.0, 0.0),
+                    new PIDConstants(5.0, 0.0, 0.0)
             ),
             config,
             () -> {

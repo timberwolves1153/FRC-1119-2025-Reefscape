@@ -12,11 +12,18 @@ public class Limelight extends SubsystemBase {
     private Swerve swerve;
 
     private double limelightYAngle;
-    private Translation2d limelightTranslation2d;
+    private Translation2d driveTranslation2d;
+    private Translation2d leftTowerOffset;
+    private Translation2d rightTowerOffset;
 
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight"); //name is set in limelight local
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
+
+    public Limelight() {
+        leftTowerOffset = new Translation2d(-6, 0);
+        rightTowerOffset = new Translation2d(6, 0);
+    }
 
     private double getLimelightDistance() {
         limelightYAngle = Constants.Limelight.limelightPitch + ty.getDouble(0);
@@ -28,10 +35,22 @@ public class Limelight extends SubsystemBase {
         return Constants.Limelight.limelightYaw + tx.getDouble(0);
     }
 
-    public void driveLimelight() {
-        limelightTranslation2d = new Translation2d(getLimelightDistance(), getLimelightAngle());
+    public void driveLimelightCenter() {
+        driveTranslation2d = new Translation2d(getLimelightDistance(), getLimelightAngle());
 
-        swerve.drive(limelightTranslation2d, getLimelightAngle(), false, true);
+        swerve.drive(driveTranslation2d, getLimelightAngle(), false, true);
+    }
+
+    public void driveLimelightLeft() {
+        driveTranslation2d = new Translation2d(getLimelightDistance(), getLimelightAngle()).plus(leftTowerOffset);
+
+        swerve.drive(driveTranslation2d, getLimelightAngle(), false, true);
+    }
+
+    public void driveLimelightRight() {
+        driveTranslation2d = new Translation2d(getLimelightDistance(), getLimelightAngle()).plus(rightTowerOffset);
+
+        swerve.drive(driveTranslation2d, getLimelightAngle(), false, true);
     }
 
     @Override

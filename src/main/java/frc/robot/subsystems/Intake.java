@@ -22,11 +22,11 @@ public class Intake extends SubsystemBase {
     }
 
     public void intakeIn() {
-        intakeMotor.setVoltage(-10);
+        intakeMotor.setVoltage(12);
     }
 
     public void intakeOut() {
-        intakeMotor.setVoltage(12);
+        intakeMotor.setVoltage(-12);
     }
 
     public void intakeStop() {

@@ -31,32 +31,7 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "Feeder",
-      "waypointRelativePos": 0.0,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "Elevator Feeder"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "Wrist Feeder"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.5,
     "maxAcceleration": 3.0,
@@ -70,7 +45,7 @@
     "rotation": 54.0
   },
   "reversed": false,
-  "folder": "3 Coral Left",
+  "folder": "3 Coral Right",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 119.99999999999999

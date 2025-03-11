@@ -174,8 +174,8 @@ public final class Constants {
   public static final class WristSetpoints {
     public static final double FeederStation = -10.8;
     public static final double L1 = -45;
-    public static final double L2 = -40.7;
-    public static final double L3 = -40.8;
+    public static final double L2 = -40.9;
+    public static final double L3 = -41.0;
   }
 
   public static final class PivotSetpoints {

@@ -76,8 +76,8 @@ public class RobotContainer {
   private final JoystickButton opLeftStick = new JoystickButton(operator, XboxController.Button.kLeftStick.value);
   private final JoystickButton opRightStick = new JoystickButton(operator, XboxController.Button.kRightStick.value);
 
-  public final POVButton opPOVUp = new POVButton(operator, 180);
-  public final POVButton opPOVDown = new POVButton(operator, 0);
+  public final POVButton opPOVUp = new POVButton(operator, 0);
+  public final POVButton opPOVDown = new POVButton(operator, 180);
   private final POVButton opPOVLeft = new POVButton(operator, 270);
   private final POVButton opPOVRight = new POVButton(operator, 90);
 
@@ -106,10 +106,10 @@ public class RobotContainer {
     LED.setDefaultCommand(
       new RunLEDs(
         LED,
-        () -> DrivePOVUp.getAsBoolean(),
-        () -> DrivePOVDown.getAsBoolean(),
+        () -> opPOVUp.getAsBoolean(),
+        () -> opPOVDown.getAsBoolean(),
         () -> SmartDashboard.getNumber("Elevator True Position", 0)
-        
+
     ));
 
     /* Named Commands */
@@ -153,9 +153,9 @@ public class RobotContainer {
   driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
 
   driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
+  driveY.onTrue(algae.setPivotSetpoint(PivotSetpoint.Climb));
   driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
   driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
-  driveA.onTrue(algae.setPivotSetpoint(PivotSetpoint.Climb));
   driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
 
   /* Operator Buttons */

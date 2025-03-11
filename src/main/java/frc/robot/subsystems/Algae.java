@@ -100,6 +100,7 @@ public class Algae extends SubsystemBase {
                         break;
                     case Climb:
                         pivotCurrentTarget = PivotSetpoints.Climb;
+                        break;
                     default:
                         pivotCurrentTarget = PivotSetpoints.Stow;
                         break;
