@@ -6,16 +6,12 @@ import static edu.wpi.first.units.Units.Second;
 
 import java.util.Map;
 
-import com.revrobotics.ColorSensorV3.LEDPulseFrequency;
-
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.AddressableLEDBufferView;
 import edu.wpi.first.wpilibj.LEDPattern;
-import edu.wpi.first.wpilibj.LEDPattern.GradientType;
 import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LED extends SubsystemBase {
@@ -26,18 +22,26 @@ public class LED extends SubsystemBase {
     private Distance ledDensity;
 
     private LEDPattern defaultPattern;
+
+    private Map<Number, Color> intakeMaskSteps;
     private LEDPattern intakePatternBase;
     private LEDPattern intakePattern;
     private LEDPattern outtakePatternBase;
     private LEDPattern outtakePattern;
-    private Map<Number, Color> intakeMaskSteps;
+
+    private Map<Number, Color> elevatorMaskSteps;
     private LEDPattern elevatorLowPattern;
     private LEDPattern elevatorLowPatternBase;
     private LEDPattern elevatorMidPattern;
     private LEDPattern elevatorMidPatternBase;
     private LEDPattern elevatorHighPattern;
     private LEDPattern elevatorHighPatternBase;
-    private Map<Number, Color> elevatorMaskSteps;
+
+    private Map<Number, Color> climbMaskSteps;
+    private LEDPattern climbUpPatternBase;
+    private LEDPattern climbUpPattern;
+    private LEDPattern climbDownPatternBase;
+    private LEDPattern climbDownPattern;
 
     private LEDPattern limelightLeftPattern;
     private LEDPattern limelightRightPattern;
@@ -109,6 +113,16 @@ public class LED extends SubsystemBase {
         elevatorHighPattern = elevatorHighPatternBase.mask(LEDPattern.steps(elevatorMaskSteps))
             .scrollAtRelativeSpeed(Percent.per(Second).of(200));
 
+        climbMaskSteps = Map.of(0, Color.kWhite, 0.125, Color.kBlack);
+
+        climbUpPatternBase = LEDPattern.solid(Color.kYellow);
+        climbUpPattern = climbUpPatternBase.mask(LEDPattern.steps(climbMaskSteps))
+            .scrollAtRelativeSpeed(Percent.per(Second).of(50));
+
+        climbDownPatternBase = LEDPattern.rainbow(255, 128);
+        climbDownPattern = climbDownPatternBase.mask(LEDPattern.steps(climbMaskSteps))
+            .scrollAtRelativeSpeed(Percent.per(Second).of(150));
+
         led.start();
     }
 
@@ -140,6 +154,16 @@ public class LED extends SubsystemBase {
     public void runElevatorHighPattern() {
         elevatorHighPattern.applyTo(leftView);
         elevatorHighPattern.applyTo(rightView);
+    }
+
+    public void runClimbUpPattern() {
+        climbUpPattern.applyTo(leftView);
+        climbUpPattern.applyTo(rightView);
+    }
+
+    public void runClimbDownPattern() {
+        climbDownPattern.applyTo(leftView);
+        climbDownPattern.applyTo(rightView);
     }
 
     public void runLimelightLeftPattern() {

@@ -150,6 +150,14 @@ public final class Configs {
             climberConfig
                 .inverted(false)
                 .smartCurrentLimit(40);
+            climberConfig.closedLoop
+                .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+                .pid(0.14, 0, 0.2)
+                .outputRange(-1, 1);
+            climberConfig.closedLoop.maxMotion
+                .maxVelocity(5000)
+                .maxAcceleration(2500)
+                .allowedClosedLoopError(0.1);
         }
     }
 }

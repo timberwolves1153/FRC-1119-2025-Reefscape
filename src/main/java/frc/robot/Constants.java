@@ -155,13 +155,26 @@ public final class Constants {
   }  
 
   public static final class Limelight {
-    public static final double limelightOffset = 0.292;
-    public static final double limelightHeight = 0.604;
-    public static final double limelightDepth = -0.277;
-    public static final double limelightYaw = -10;
-    public static final double limelightPitch = -15;  //All offsets from a point at the center of the front of robot facing forward
+    public static final double limelightOffset = 0.287;
+    public static final double limelightHeight = 0.317;
+    public static final double limelightDepth = -0.25;
+    public static final double limelightYaw = 36.78;
 
     public static final double aprilTagHeight = 0.31;
+
+    public static final double limelightXP = 3.3;
+    public static final double limelightYP = 3.3;
+    public static final double limelightRotP = 0.058;
+
+    public static final double limelightXSetpoint = -0.025;
+    public static final double limelightXTolerance = 0.05;
+    public static final double limelightYSetpoint = 0.16;
+    public static final double limelightYTolerance = 0.05;
+    public static final double limelightRotSetpoint = 0.0;
+    public static final double limelightRotTolerance = 1.0;
+
+    public static final double noTagTime = 3.0;
+    public static final double alignmentTime = 10.0;
   }
 
   public static final class ElevatorSetpoints {
@@ -172,15 +185,23 @@ public final class Constants {
   }
 
   public static final class WristSetpoints {
-    public static final double FeederStation = -10.8;
+    public static final double FeederStation = -10.3;
     public static final double L1 = -45;
     public static final double L2 = -40.9;
     public static final double L3 = -41.0;
   }
 
   public static final class PivotSetpoints {
-    public static final double Stow = -3.5;
+    public static final double Reset = 0.0;
+    public static final double Stow = -3.2;
     public static final double Collect = -14.0;
     public static final double Climb = -25;
+  }
+
+  public static final class ClimbSetpoints {
+    public static final double Reset = 0.0;
+    public static final double Stow = 50.0;
+    public static final double Ready = 240.0;
+    public static final double Climb = 75.0;
   }
 }

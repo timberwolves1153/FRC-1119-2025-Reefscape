@@ -17,18 +17,19 @@ import frc.robot.Constants.PivotSetpoints;
 
 public class Algae extends SubsystemBase {
     public enum PivotSetpoint {
+        Reset,
         Stow,
         Collect,
         Climb
     }
-
-    private double pivotCurrentTarget;
 
     private SparkFlex pivotMotor;
     private SparkMax intakeMotor;
 
     private SparkClosedLoopController pivotController;
     private RelativeEncoder pivotEncoder;
+
+    private double pivotCurrentTarget;
 
     public Algae() {
         pivotMotor = new SparkFlex(41, MotorType.kBrushless);
@@ -92,6 +93,9 @@ public class Algae extends SubsystemBase {
         return this.runOnce(
             () -> {
                 switch (setpoint) {
+                    case Reset:
+                        pivotCurrentTarget = PivotSetpoints.Reset;
+                        break;
                     case Stow:
                         pivotCurrentTarget = PivotSetpoints.Stow;
                         break;

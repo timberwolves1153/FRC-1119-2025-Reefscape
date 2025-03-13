@@ -20,13 +20,15 @@ public class Limelight extends SubsystemBase {
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
 
-    public Limelight() {
-        leftTowerOffset = new Translation2d(-6, 0);
-        rightTowerOffset = new Translation2d(6, 0);
+    public Limelight(Swerve swerve) {
+        leftTowerOffset = new Translation2d(-0.124, 0);
+        rightTowerOffset = new Translation2d(0.124, 0);
+
+        this.swerve = swerve;
     }
 
     private double getLimelightDistance() {
-        limelightYAngle = Constants.Limelight.limelightPitch + ty.getDouble(0);
+        limelightYAngle = + ty.getDouble(0);
 
         return ((Constants.Limelight.aprilTagHeight - Constants.Limelight.limelightHeight) / Math.tan(limelightYAngle)) - Constants.Limelight.limelightDepth;
     }
@@ -55,7 +57,7 @@ public class Limelight extends SubsystemBase {
 
     @Override
     public void periodic() {
-        // SmartDashboard.putNumber("Limelight Angle", getLimelightAngle());
-        // SmartDashboard.putNumber("Limelight Distance", getLimelightDistance());
+        SmartDashboard.putNumber("Limelight Angle", getLimelightAngle());
+        SmartDashboard.putNumber("Limelight Distance", getLimelightDistance());
     }
 }
