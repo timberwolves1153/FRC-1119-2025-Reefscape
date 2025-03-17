@@ -45,7 +45,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void climberUp() {
-        climberMotor.setVoltage(6);
+        climberMotor.setVoltage(12);
     }
 
     public void climberDown() {
@@ -87,7 +87,7 @@ public class Climber extends SubsystemBase {
     }
     @Override
     public void periodic() {
-        climberToSetpoint();
+        // climberToSetpoint();
 
         SmartDashboard.putNumber("Climber Target Position", climbCurrentTarget);
         SmartDashboard.putNumber("Climber True Position", climbEncoder.getPosition());

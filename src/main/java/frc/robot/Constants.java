@@ -139,14 +139,14 @@ public final class Constants {
   }
 
   public static final class AutoConstants { 
-    public static final double kMaxSpeedMetersPerSecond = 3;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+    public static final double kMaxSpeedMetersPerSecond = 3.0;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 3.0;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
-    public static final double kPXController = 1;
-    public static final double kPYController = 1;
-    public static final double kPThetaController = 1;
+    public static final double kPXController = 1.0;
+    public static final double kPYController = 1.0;
+    public static final double kPThetaController = 1.0;
 
     /* Constraint for the motion profilied robot angle controller */
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
@@ -173,27 +173,27 @@ public final class Constants {
     public static final double limelightRotSetpoint = 0.0;
     public static final double limelightRotTolerance = 1.0;
 
-    public static final double noTagTime = 3.0;
-    public static final double alignmentTime = 10.0;
+    public static final double noTagTime = 2.0;
+    public static final double alignmentTime = 5.0;
   }
 
   public static final class ElevatorSetpoints {
     public static final double FeederStation = 0.0;
     public static final double L1 = 0.0;
-    public static final double L2 = 0;
+    public static final double L2 = 0.0;
     public static final double L3 = -27.0;
   }
 
   public static final class WristSetpoints {
-    public static final double FeederStation = -10.3;
+    public static final double FeederStation = -10.4;
     public static final double L1 = -45;
-    public static final double L2 = -40.9;
-    public static final double L3 = -41.0;
+    public static final double L2 = -41.5;
+    public static final double L3 = -41.8;
   }
 
   public static final class PivotSetpoints {
     public static final double Reset = 0.0;
-    public static final double Stow = -3.2;
+    public static final double Stow = -2.8;
     public static final double Collect = -14.0;
     public static final double Climb = -25;
   }
@@ -201,7 +201,7 @@ public final class Constants {
   public static final class ClimbSetpoints {
     public static final double Reset = 0.0;
     public static final double Stow = 50.0;
-    public static final double Ready = 240.0;
+    public static final double Ready = 225.0;
     public static final double Climb = 75.0;
   }
 }

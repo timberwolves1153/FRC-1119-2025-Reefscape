@@ -57,7 +57,7 @@ public class Limelight extends SubsystemBase {
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Limelight Angle", getLimelightAngle());
-        SmartDashboard.putNumber("Limelight Distance", getLimelightDistance());
+        // SmartDashboard.putNumber("Limelight Angle", getLimelightAngle());
+        // SmartDashboard.putNumber("Limelight Distance", getLimelightDistance());
     }
 }

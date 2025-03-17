@@ -155,9 +155,11 @@ public class RobotContainer {
 
   driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
 
-  driveY.onTrue(climber.setClimberSetpoint(ClimbSetpoint.Ready));
+  driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
+  driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
   driveY.onTrue(algae.setPivotSetpoint(PivotSetpoint.Climb));
-  driveA.onTrue((new InstantCommand(() -> climber.climberDown(), climber)));
+  driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
+  driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
 
   driveLeftTrigger.whileTrue(new DeferredCommand(() -> new AlignToReef(false, s_Swerve), Set.of(s_Swerve)));
   driveRightTrigger.whileTrue(new DeferredCommand(() -> new AlignToReef(true, s_Swerve), Set.of(s_Swerve)));

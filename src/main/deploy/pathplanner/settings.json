@@ -6,13 +6,15 @@
     "1 Coral Right",
     "3 Coral Center",
     "3 Coral Right",
-    "3 Coral Right Rush"
+    "3 Coral Right Rush",
+    "Push Off Line"
   ],
   "autoFolders": [
     "1 Coral Right",
     "3 Coral Center",
     "3 Coral Right",
-    "3 Coral Right Rush"
+    "3 Coral Right Rush",
+    "Push Off Line"
   ],
   "defaultMaxVel": 3.5,
   "defaultMaxAccel": 3.0,

@@ -47,9 +47,9 @@ public class RunLEDs extends Command {
             LED.runOuttakePattern();
         } else if (POVDown == true) {
             LED.runIntakePattern();
-        } else if (climberPosition > 235) {
+        } else if (climberPosition > 200) {
             LED.runClimbUpPattern();
-        } else if (climberPosition > 70) {
+        } else if (climberPosition > 100) {
             LED.runClimbDownPattern();
         } else if (elevatorPosition > -1) {
             LED.runDefaultPattern();
