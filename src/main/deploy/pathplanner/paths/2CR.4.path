@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.175,
+        "x": 5.275,
         "y": 3.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.175,
-        "y": 2.0000000000000226
+        "x": 5.788030214988504,
+        "y": 1.5904610688211376
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.1,
-        "y": 0.7
+        "x": 0.825,
+        "y": 0.725
       },
       "prevControl": {
-        "x": 1.6877852522924728,
-        "y": 1.509016994374947
+        "x": 2.357088886237956,
+        "y": 2.0105752193730786
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,26 +33,35 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Feeder",
-      "waypointRelativePos": 0.0,
+      "name": "Elevator Feeder",
+      "waypointRelativePos": 0.1,
       "endWaypointRelativePos": null,
       "command": {
-        "type": "parallel",
+        "type": "named",
         "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "Elevator Feeder"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "Wrist Feeder"
-              }
-            }
-          ]
+          "name": "Elevator Feeder"
+        }
+      }
+    },
+    {
+      "name": "Wrist Feeder",
+      "waypointRelativePos": 0.3,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Wrist Feeder"
+        }
+      }
+    },
+    {
+      "name": "Intake In",
+      "waypointRelativePos": 0.95,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Intake In"
         }
       }
     }
@@ -66,13 +75,13 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.0,
+    "velocity": 0,
     "rotation": 54.0
   },
   "reversed": false,
-  "folder": "3 Coral Right",
+  "folder": "2 Coral Right",
   "idealStartingState": {
-    "velocity": 0,
+    "velocity": 0.0,
     "rotation": 119.99999999999999
   },
   "useDefaultConstraints": true

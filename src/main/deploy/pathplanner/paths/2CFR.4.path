@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.175,
-        "y": 3.0
+        "x": 3.225,
+        "y": 3.85
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.175,
-        "y": 2.0000000000000226
+        "x": 2.0361742424242424,
+        "y": 2.9272727272727277
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.1,
+        "x": 0.725,
         "y": 0.7
       },
       "prevControl": {
-        "x": 1.6877852522924728,
-        "y": 1.509016994374947
+        "x": 1.9360101010101012,
+        "y": 2.760795454545454
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,30 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Elevator Feeder",
+      "waypointRelativePos": 0.1,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Elevator Feeder"
+        }
+      }
+    },
+    {
+      "name": "Wrist Feeder",
+      "waypointRelativePos": 0.3,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Wrist Feeder"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.5,
     "maxAcceleration": 3.0,
@@ -41,14 +64,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0.0,
+    "velocity": 0,
     "rotation": 54.0
   },
   "reversed": false,
-  "folder": "3 Coral Right",
+  "folder": "2 Coral Far Right",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

@@ -1,24 +1,22 @@
 package frc.robot;
 
-import java.security.AlgorithmParameterGenerator;
 import java.util.Set;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
+import edu.wpi.first.hal.SimDevice.Direction;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AlignCoral;
 import frc.robot.commands.AlignToReef;
 import frc.robot.commands.RunLEDs;
 import frc.robot.commands.TeleopSwerve;
@@ -91,7 +89,6 @@ public class RobotContainer {
   private final Elevator elevator = new Elevator();
   private final Wrist wrist = new Wrist();
   private final Climber climber = new Climber();
-  private final Limelight limelight = new Limelight(s_Swerve);
   private final LED LED = new LED();
 
   public RobotContainer() {
@@ -129,7 +126,18 @@ public class RobotContainer {
 
     NamedCommands.registerCommand("Intake In", new InstantCommand(() -> intake.intakeIn(), intake));
     NamedCommands.registerCommand("Intake Out", new InstantCommand(() -> intake.intakeOut(), intake));
-    NamedCommands.registerCommand("Intake Stop", new InstantCommand(() -> intake.intakeStop(), intake));
+    NamedCommands.registerCommand("Intake Stop", new InstantCommand(() -> intake.intakeIdle(), intake));
+    NamedCommands.registerCommand("Align Coral", new AlignCoral(intake));
+
+    NamedCommands.registerCommand("Line Up Left", new AlignToReef(false, s_Swerve).withTimeout(0.5));
+    NamedCommands.registerCommand("Line Up Right", new AlignToReef(true, s_Swerve).withTimeout(0.5));
+
+    NamedCommands.registerCommand("Reset Gyro 0", new InstantCommand(() -> s_Swerve.zeroGyro(0), s_Swerve));
+    NamedCommands.registerCommand("Reset Gyro 54", new InstantCommand(() -> s_Swerve.zeroGyro(54), s_Swerve));
+    NamedCommands.registerCommand("Reset Gyro 60", new InstantCommand(() -> s_Swerve.zeroGyro(60), s_Swerve));
+    NamedCommands.registerCommand("Reset Gyro 120", new InstantCommand(() -> s_Swerve.zeroGyro(120), s_Swerve));
+    NamedCommands.registerCommand("Reset Gyro 126", new InstantCommand(() -> s_Swerve.zeroGyro(126), s_Swerve));
+    NamedCommands.registerCommand("Reset Gyro 180", new InstantCommand(() -> s_Swerve.zeroGyro(180), s_Swerve));
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("AutoChooser", autoChooser);
@@ -147,13 +155,11 @@ public class RobotContainer {
   // driveX.whileTrue(s_Swerve.sysIdDynamic(Direction.kForward));
   // driveB.whileTrue(s_Swerve.sysIdDynamic(Direction.kReverse));
 
-  // driveLeftStick.onTrue(new InstantCommand(() -> s_Swerve.resetEncoders(), s_Swerve));
-
-  // driveA.whileTrue(new InstantCommand(() -> limelight.driveLimelight(), limelight));
+  driveLeftStick.onTrue(new InstantCommand(() -> s_Swerve.resetEncoders(), s_Swerve));
 
   /* Driver Buttons */
 
-  driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+  driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro(0)));
 
   driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
   driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
@@ -161,8 +167,11 @@ public class RobotContainer {
   driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
   driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
 
-  driveLeftTrigger.whileTrue(new DeferredCommand(() -> new AlignToReef(false, s_Swerve), Set.of(s_Swerve)));
-  driveRightTrigger.whileTrue(new DeferredCommand(() -> new AlignToReef(true, s_Swerve), Set.of(s_Swerve)));
+  // driveLeftTrigger.onTrue(new DeferredCommand(() -> new AlignToReef(false, s_Swerve), Set.of(s_Swerve)));
+  // driveRightTrigger.onTrue(new DeferredCommand(() -> new AlignToReef(true, s_Swerve), Set.of(s_Swerve)));
+
+	driveLeftTrigger.onTrue(new AlignToReef(false, s_Swerve).withTimeout(1));
+  driveRightTrigger.onTrue(new AlignToReef(true, s_Swerve).withTimeout(1));
 
   /* Operator Buttons */
   
@@ -179,7 +188,7 @@ public class RobotContainer {
   opPOVUp.onTrue(new InstantCommand(() -> intake.intakeOut(), intake));
   opPOVUp.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
   opPOVDown.onTrue(new InstantCommand(() -> intake.intakeIn(), intake));
-  opPOVDown.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
+  opPOVDown.onFalse(new AlignCoral(intake));
 
   opRightBumper.onTrue(algae.setPivotSetpoint(PivotSetpoint.Collect));
   opRightTrigger.onTrue(algae.setPivotSetpoint(PivotSetpoint.Stow));
@@ -208,7 +217,7 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     return autoChooser.getSelected();
-    // return new PathPlannerAuto("straightAuto");
+    // return new PathPlannerAuto("leaveAuto");
   }
 
   public void resetEncoders() {

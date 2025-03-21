@@ -78,7 +78,7 @@ public class Algae extends SubsystemBase {
     }
 
     public void algaeOuttake() {
-        intakeMotor.setVoltage(10);
+        intakeMotor.setVoltage(4);
     }
 
     public void algaeStop() {

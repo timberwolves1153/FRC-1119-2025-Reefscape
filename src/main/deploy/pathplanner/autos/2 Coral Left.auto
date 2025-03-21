@@ -5,15 +5,33 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "3CR.1"
+            "name": "Wrist L2"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "2CL.1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Line Up Left"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {
@@ -25,7 +43,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.6
+            "waitTime": 0.25
           }
         },
         {
@@ -35,57 +53,63 @@
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "3CR.2"
+            "name": "Elevator L3"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.1
+            "waitTime": 0.25
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Intake In"
+            "name": "Wrist Feeder"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.8
+            "waitTime": 0.15
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Intake Stop"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.1
+            "name": "Elevator Feeder"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "3CR.3"
+            "pathName": "2CL.2"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "2CL.3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Line Up Left"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {
@@ -97,43 +121,25 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.6
+            "waitTime": 0.25
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Intake Stop"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "3CR.4"
+            "pathName": "2CL.4"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.1
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake In"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.8
+            "waitTime": 0.5
           }
         },
         {
@@ -143,51 +149,15 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.1
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "3CR.5"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
           "type": "named",
           "data": {
-            "name": "Intake Out"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.6
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Stop"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
+            "name": "Reset Gyro 126"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "3 Coral Right",
+  "folder": "2 Coral Left",
   "choreoAuto": false
 }

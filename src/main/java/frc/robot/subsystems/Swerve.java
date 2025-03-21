@@ -66,7 +66,7 @@ public class Swerve extends SubsystemBase {
         gyro = new Pigeon2(Constants.Swerve.PigeonID);
         
         gyro.clearStickyFaults();
-        zeroGyro();
+        zeroGyro(0);
 
         try {
             config = RobotConfig.fromGUISettings();
@@ -168,8 +168,8 @@ public class Swerve extends SubsystemBase {
         return positions;
     }
 
-    public void zeroGyro() {
-        gyro.setYaw(0);
+    public void zeroGyro(double angle) {
+        gyro.setYaw(angle);
     }
 
     public Rotation2d getAngle() {

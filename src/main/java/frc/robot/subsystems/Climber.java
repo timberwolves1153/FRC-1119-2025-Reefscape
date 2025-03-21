@@ -49,7 +49,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void climberDown() {
-        climberMotor.setVoltage(-10);
+        climberMotor.setVoltage(-12);
     }
 
     public void climberStop() {

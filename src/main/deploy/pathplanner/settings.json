@@ -3,17 +3,15 @@
   "robotLength": 0.71,
   "holonomicMode": true,
   "pathFolders": [
-    "1 Coral Right",
-    "3 Coral Center",
-    "3 Coral Right",
-    "3 Coral Right Rush",
+    "2 Coral Far Right",
+    "2 Coral Right",
+    "2 Coral Left",
     "Push Off Line"
   ],
   "autoFolders": [
-    "1 Coral Right",
-    "3 Coral Center",
-    "3 Coral Right",
-    "3 Coral Right Rush",
+    "2 Coral Far Right",
+    "2 Coral Right",
+    "2 Coral Left",
     "Push Off Line"
   ],
   "defaultMaxVel": 3.5,

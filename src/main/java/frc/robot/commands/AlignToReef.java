@@ -26,7 +26,8 @@ public class AlignToReef extends Command {
     rotController = new PIDController(Constants.Limelight.limelightRotP, 0, 0);
     this.isRightScore = isRightScore;
     this.swerve = swerve;
-    addRequirements(swerve);
+    
+    //addRequirements(swerve);
   }
 
   @Override

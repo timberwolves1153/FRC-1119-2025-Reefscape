@@ -29,7 +29,19 @@ public class Intake extends SubsystemBase {
         intakeMotor.setVoltage(-12);
     }
 
+    public void intakeInSlow() {
+        intakeMotor.setVoltage(3);
+    }
+
+    public void intakeOutSlow() {
+        intakeMotor.setVoltage(-3);
+    }
+
     public void intakeStop() {
         intakeMotor.setVoltage(0);
+    }
+
+    public void intakeIdle() {
+        intakeMotor.setVoltage(1);
     }
 }
