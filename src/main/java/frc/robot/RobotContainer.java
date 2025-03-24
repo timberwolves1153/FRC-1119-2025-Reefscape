@@ -81,6 +81,8 @@ public class RobotContainer {
   private final POVButton opPOVLeft = new POVButton(operator, 270);
   private final POVButton opPOVRight = new POVButton(operator, 90);
 
+  private final JoystickButton opStart = new JoystickButton(operator, XboxController.Button.kStart.value);
+
   /* Subsystems */
 
   private final Swerve s_Swerve = new Swerve();
@@ -90,6 +92,8 @@ public class RobotContainer {
   private final Wrist wrist = new Wrist();
   private final Climber climber = new Climber();
   private final LED LED = new LED();
+
+  /* Default Commands */
 
   public RobotContainer() {
     s_Swerve.setDefaultCommand(
@@ -145,6 +149,8 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
+  /* Button Binds */
+
   public void configureButtonBindings() {
 
   /* Testing */
@@ -155,7 +161,7 @@ public class RobotContainer {
   // driveX.whileTrue(s_Swerve.sysIdDynamic(Direction.kForward));
   // driveB.whileTrue(s_Swerve.sysIdDynamic(Direction.kReverse));
 
-  driveLeftStick.onTrue(new InstantCommand(() -> s_Swerve.resetEncoders(), s_Swerve));
+  // driveLeftStick.onTrue(new InstantCommand(() -> s_Swerve.resetEncoders(), s_Swerve));
 
   /* Driver Buttons */
 
@@ -196,12 +202,12 @@ public class RobotContainer {
   opLeftBumper.onTrue(new InstantCommand(() -> algae.algaeIntake(), algae));
   opLeftBumper.onFalse(new InstantCommand(() -> algae.algaeIdle(), algae));
   opLeftTrigger.onTrue(new InstantCommand(() -> algae.algaeOuttake(), algae));
-  opLeftTrigger.onFalse(new InstantCommand(() -> algae.algaeIdle(), algae));
+  opLeftTrigger.onFalse(new InstantCommand(() -> algae.algaeStop(), algae));
 
-  opLeftStick.onTrue(elevator.setElevatorSetpoint(ElevatorSetpoint.FeederStation));
-  opLeftStick.onTrue(wrist.setWristSetpoint(WristSetpoint.FeederStation));
-  opLeftStick.onTrue(algae.setPivotSetpoint(PivotSetpoint.Reset));
-  opLeftStick.onTrue(climber.setClimberSetpoint(ClimbSetpoint.Reset));
+  opStart.onTrue(elevator.setElevatorSetpoint(ElevatorSetpoint.FeederStation));
+  opStart.onTrue(wrist.setWristSetpoint(WristSetpoint.FeederStation));
+  opStart.onTrue(algae.setPivotSetpoint(PivotSetpoint.Reset));
+  opStart.onTrue(climber.setClimberSetpoint(ClimbSetpoint.Reset));
 
   // opRightStick.onTrue(new InstantCommand(() -> elevator.elevatorResetByButton(), elevator));
 

@@ -15,12 +15,14 @@ public class AlignCoral extends SequentialCommandGroup {
     addRequirements(intake);
 
     addCommands(
-        Commands.runOnce(() -> intake.intakeOutSlow()),
-        new WaitCommand(0.1),
         Commands.runOnce(() -> intake.intakeInSlow()),
         new WaitCommand(0.1),
         Commands.runOnce(() -> intake.intakeOutSlow()),
+        new WaitCommand(0.075),
+        Commands.runOnce(() -> intake.intakeInSlow()),
         new WaitCommand(0.1),
+        Commands.runOnce(() -> intake.intakeOutSlow()),
+        new WaitCommand(0.075),
         Commands.runOnce(() -> intake.intakeInSlow()),
         new WaitCommand(0.1),
         Commands.runOnce(() -> intake.intakeIdle())

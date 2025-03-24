@@ -55,35 +55,7 @@ public class LED extends SubsystemBase {
         leftView = ledBuffer.createView(0, 29);
         rightView = ledBuffer.createView(30, 59).reversed();
 
-        /* Patterns V1 */
-
-        // defaultPattern = LEDPattern.gradient(
-        //     LEDPattern.GradientType.kDiscontinuous, Color.kWhite, Color.kWhiteSmoke)
-        //     .scrollAtRelativeSpeed(Percent.per(Second).of(25));
-
-        // intakePattern = LEDPattern.solid(Color.kGreen);
-
-        // outtakePattern = LEDPattern.solid(Color.kRed);
-
-        // elevatorLowPattern = LEDPattern.gradient(
-        //     LEDPattern.GradientType.kContinuous, Color.kBlue, Color.kOrangeRed)
-        //     .scrollAtRelativeSpeed(Percent.per(Second).of(50));
-
-        // elevatorMidPattern = LEDPattern.gradient(
-        //     LEDPattern.GradientType.kContinuous, Color.kBlue, Color.kOrangeRed)
-        //     .scrollAtRelativeSpeed(Percent.per(Second).of(125));
-
-        // elevatorHighPattern = LEDPattern.gradient(
-        //     LEDPattern.GradientType.kContinuous, Color.kBlue, Color.kOrangeRed)
-        //     .scrollAtRelativeSpeed(Percent.per(Second).of(200));
-
-        // limelightLeftPattern = LEDPattern.steps(Map.of(0.0, Color.kBlue, 0.5, Color.kWhite));
-
-        // limelightRightPattern = LEDPattern.steps(Map.of(0.0, Color.kWhite, 0.5, Color.kOrangeRed));
-
-        // linedUpPattern = LEDPattern.rainbow(255, 128);
-
-        /* Patterns V2 */
+        /* Patterns */
 
         defaultPattern = LEDPattern.gradient(
             LEDPattern.GradientType.kDiscontinuous, Color.kWhite, Color.kWhiteSmoke)

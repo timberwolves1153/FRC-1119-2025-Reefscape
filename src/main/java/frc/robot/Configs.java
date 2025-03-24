@@ -137,7 +137,7 @@ public final class Configs {
                 .pid(0.14, 0, 0.2)
                 .outputRange(-1, 1);
             wristConfig.closedLoop.maxMotion
-                .maxVelocity(2000)
+                .maxVelocity(1500)
                 .maxAcceleration(4500)
                 .allowedClosedLoopError(0.1);
         }
