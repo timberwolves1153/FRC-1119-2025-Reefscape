@@ -55,10 +55,10 @@ public class RobotContainer {
   private final JoystickButton driveLeftStick = new JoystickButton(driver, XboxController.Button.kLeftStick.value);
   private final JoystickButton driveRightStick = new JoystickButton(driver, XboxController.Button.kRightStick.value);
 
-  private final POVButton DrivePOVUp = new POVButton(driver, 180);
-  private final POVButton DrivePOVDown = new POVButton(driver, 0);
-  private final POVButton DrivePOVLeft = new POVButton(driver, 270);
-  private final POVButton DrivePOVRight = new POVButton(driver, 90);
+  private final POVButton drivePOVUp = new POVButton(driver, 180);
+  private final POVButton drivePOVDown = new POVButton(driver, 0);
+  private final POVButton drivePOVLeft = new POVButton(driver, 270);
+  private final POVButton drivePOVRight = new POVButton(driver, 90);
 
   /* Operator Buttons */
 
@@ -102,7 +102,8 @@ public class RobotContainer {
         () -> -driver.getRawAxis(translationAxis),
         () -> -driver.getRawAxis(strafeAxis),
         () -> -driver.getRawAxis(rotationAxis),
-        () -> true
+        () -> true,
+        () -> opRightStick.getAsBoolean()
 
     ));
 
@@ -167,17 +168,14 @@ public class RobotContainer {
 
   driveRightStick.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro(0)));
 
-  driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
-  driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
-  driveY.onTrue(algae.setPivotSetpoint(PivotSetpoint.Climb));
-  driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
-  driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
+  // driveY.onTrue(new InstantCommand(() -> climber.climberUp(), climber));
+  // driveY.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
+  // driveY.onTrue(algae.setPivotSetpoint(PivotSetpoint.Climb));
+  // driveA.onTrue(new InstantCommand(() -> climber.climberDown(), climber));
+  // driveA.onFalse(new InstantCommand(() -> climber.climberStop(), climber));
 
   // driveLeftTrigger.onTrue(new DeferredCommand(() -> new AlignToReef(false, s_Swerve), Set.of(s_Swerve)));
   // driveRightTrigger.onTrue(new DeferredCommand(() -> new AlignToReef(true, s_Swerve), Set.of(s_Swerve)));
-
-	driveLeftTrigger.onTrue(new AlignToReef(false, s_Swerve).withTimeout(1));
-  driveRightTrigger.onTrue(new AlignToReef(true, s_Swerve).withTimeout(1));
 
   /* Operator Buttons */
   
@@ -195,6 +193,9 @@ public class RobotContainer {
   opPOVUp.onFalse(new InstantCommand(() -> intake.intakeStop(), intake));
   opPOVDown.onTrue(new InstantCommand(() -> intake.intakeIn(), intake));
   opPOVDown.onFalse(new AlignCoral(intake));
+
+  opPOVLeft.onTrue(new AlignToReef(false, s_Swerve).withTimeout(1));
+  opPOVRight.onTrue(new AlignToReef(true, s_Swerve).withTimeout(1));
 
   opRightBumper.onTrue(algae.setPivotSetpoint(PivotSetpoint.Collect));
   opRightTrigger.onTrue(algae.setPivotSetpoint(PivotSetpoint.Stow));
