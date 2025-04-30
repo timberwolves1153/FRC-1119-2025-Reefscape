@@ -4,18 +4,20 @@
   "holonomicMode": true,
   "pathFolders": [
     "2 Coral Far Right",
-    "2 Coral Right",
     "2 Coral Left",
+    "2 Coral Right",
+    "3 Coral Right",
     "Push Off Line"
   ],
   "autoFolders": [
     "2 Coral Far Right",
-    "2 Coral Right",
     "2 Coral Left",
+    "2 Coral Right",
+    "3 Coral Right",
     "Push Off Line"
   ],
-  "defaultMaxVel": 3.5,
-  "defaultMaxAccel": 3.0,
+  "defaultMaxVel": 4.5,
+  "defaultMaxAccel": 3.5,
   "defaultMaxAngVel": 360.0,
   "defaultMaxAngAccel": 360.0,
   "defaultNominalVoltage": 12.0,

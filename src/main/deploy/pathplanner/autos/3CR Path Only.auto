@@ -1,0 +1,85 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Wrist L2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CR.1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Line Up Right"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.25
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CR.2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CR.3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Line Up Right"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.25
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CR.4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3CR.5"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Reset Gyro 120"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "3 Coral Right",
+  "choreoAuto": false
+}
