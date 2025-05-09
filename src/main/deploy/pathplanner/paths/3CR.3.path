@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 3.9,
-        "y": 2.8
+        "x": 3.7,
+        "y": 2.825
       },
       "prevControl": {
-        "x": 3.334879625669223,
-        "y": 2.3912936559498044
+        "x": 3.1348796256692233,
+        "y": 2.4162936559498047
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,41 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Intake Stop",
+      "waypointRelativePos": 0.1,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Intake Stop"
+        }
+      }
+    },
+    {
+      "name": "Wrist L3",
+      "waypointRelativePos": 0.15,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Wrist L3"
+        }
+      }
+    },
+    {
+      "name": "Elevator L3",
+      "waypointRelativePos": 0.3,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Elevator L3"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 4.5,
     "maxAcceleration": 3.5,

@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 0.925,
-        "y": 0.825
+        "x": 0.7,
+        "y": 0.75
       },
       "prevControl": {
-        "x": 1.7015094661836436,
-        "y": 1.3711620458562943
+        "x": 1.4765094661836435,
+        "y": 1.2961620458562944
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,30 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Elevator Feeder",
+      "waypointRelativePos": 0.3,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Elevator Feeder"
+        }
+      }
+    },
+    {
+      "name": "Intake In",
+      "waypointRelativePos": 0.95,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Intake In"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 4.5,
     "maxAcceleration": 3.5,

@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.925,
-        "y": 0.825
+        "x": 0.825,
+        "y": 0.75
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.699592806433853,
-        "y": 1.375846270518696
+        "x": 1.599592806433853,
+        "y": 1.300846270518696
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.75,
-        "y": 2.85
+        "x": 3.6,
+        "y": 2.8
       },
       "prevControl": {
-        "x": 3.184879625669223,
-        "y": 2.4412936559498046
+        "x": 3.034879625669223,
+        "y": 2.3912936559498044
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,41 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Intake Stop",
+      "waypointRelativePos": 0.1,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Intake Stop"
+        }
+      }
+    },
+    {
+      "name": "Wrist L3",
+      "waypointRelativePos": 0.15,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Wrist L3"
+        }
+      }
+    },
+    {
+      "name": "Elevator L3",
+      "waypointRelativePos": 0.3,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Elevator L3"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 4.5,
     "maxAcceleration": 3.5,
