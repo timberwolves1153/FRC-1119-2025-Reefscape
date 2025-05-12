@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.825,
+        "x": 0.7,
         "y": 0.75
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.599592806433853,
-        "y": 1.300846270518696
+        "x": 1.6908379448370603,
+        "y": 1.5012061360914744
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.6,
-        "y": 2.8
+        "x": 3.66,
+        "y": 2.86
       },
       "prevControl": {
-        "x": 3.034879625669223,
-        "y": 2.3912936559498044
+        "x": 3.057248658709067,
+        "y": 2.3697489195445924
       },
       "nextControl": null,
       "isLocked": false,
@@ -44,8 +44,19 @@
       }
     },
     {
-      "name": "Wrist L3",
+      "name": "Align Coral",
       "waypointRelativePos": 0.15,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Align Coral"
+        }
+      }
+    },
+    {
+      "name": "Wrist L3",
+      "waypointRelativePos": 0.2,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
