@@ -219,11 +219,11 @@ public class Swerve extends SubsystemBase {
     @Override
     public void periodic() {
         swerveOdometry.update(getAngle(), getModulePositions());
-        m_poseEstimatorField.setRobotPose(swerveOdometry.getPoseMeters());
+        // m_poseEstimatorField.setRobotPose(swerveOdometry.getPoseMeters());
 
-        SmartDashboard.putData("Pose Estimator Field", m_poseEstimatorField);
-        SmartDashboard.putNumber("Pose X", swerveOdometry.getPoseMeters().getX());
-        SmartDashboard.putNumber("Pose Y", swerveOdometry.getPoseMeters().getY());
+        // SmartDashboard.putData("Pose Estimator Field", m_poseEstimatorField);
+        // SmartDashboard.putNumber("Pose X", swerveOdometry.getPoseMeters().getX());
+        // SmartDashboard.putNumber("Pose Y", swerveOdometry.getPoseMeters().getY());
 
         for(SwerveModule mod : mSwerveModules){
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " absoluteEncoderPorts", mod.getAbsoluteEncoder().getDegrees());

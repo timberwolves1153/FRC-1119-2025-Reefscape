@@ -73,7 +73,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.25
           }
         },
         {
@@ -133,25 +133,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.25
           }
         },
         {
           "type": "path",
           "data": {
             "pathName": "3CR.5"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Line Up Left"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.25
           }
         },
         {
